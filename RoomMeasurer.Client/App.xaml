@@ -9,6 +9,7 @@
         <Style x:Key="TitleStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="18" />
             <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </Application.Resources>
 </Application>

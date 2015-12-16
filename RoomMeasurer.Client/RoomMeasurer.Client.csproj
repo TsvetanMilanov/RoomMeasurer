@@ -98,10 +98,17 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Contracts\INavigationService.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MeasureFromExistingImagePage.xaml.cs">
+      <DependentUpon>MeasureFromExistingImagePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\DelegateCommand.cs" />
+    <Compile Include="Utilities\DelegateCommandWithParameter.cs" />
+    <Compile Include="Utilities\NavigationService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
   </ItemGroup>
@@ -129,6 +136,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MeasureFromExistingImagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

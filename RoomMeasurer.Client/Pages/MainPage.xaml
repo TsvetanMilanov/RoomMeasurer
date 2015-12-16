@@ -6,9 +6,36 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <Style x:Key="MainMenuButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
         <TextBlock Text="{StaticResource AppTitle}"
-                   Style="{StaticResource TitleStyle}"/>
+                   Style="{StaticResource TitleStyle}"
+                   Grid.Row="0"/>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Button Name="measureFromExistingImageButton"
+                    Content="Measure from existing image"
+                    Style="{StaticResource MainMenuButtonStyle}"
+                    Command="{Binding GoToMeasureFromExistingImageCommand}"
+                    Grid.Row="0"/>
+            <Button Name="exitButton"
+                    Content="Exit"
+                    Style="{StaticResource MainMenuButtonStyle}"
+                    Grid.Row="1"/>
+        </Grid>
     </Grid>
 </Page>

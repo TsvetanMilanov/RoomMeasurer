@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomMeasurer.Logic", "RoomMeasurer.Logic\RoomMeasurer.Logic.csproj", "{FDEBC62E-1FD4-4790-89DD-354A8E119838}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomMeasurer.Client", "RoomMeasurer.Client\RoomMeasurer.Client.csproj", "{F976713A-4DA9-4938-A14A-C4BA0AA5B233}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,28 @@ Global
 		{FDEBC62E-1FD4-4790-89DD-354A8E119838}.Release|x64.Build.0 = Release|x64
 		{FDEBC62E-1FD4-4790-89DD-354A8E119838}.Release|x86.ActiveCfg = Release|x86
 		{FDEBC62E-1FD4-4790-89DD-354A8E119838}.Release|x86.Build.0 = Release|x86
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Debug|Any CPU.Build.0 = Debug|x86
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Debug|Any CPU.Deploy.0 = Debug|x86
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Debug|ARM.ActiveCfg = Debug|ARM
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Debug|ARM.Build.0 = Debug|ARM
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Debug|ARM.Deploy.0 = Debug|ARM
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Debug|x64.ActiveCfg = Debug|x64
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Debug|x64.Build.0 = Debug|x64
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Debug|x64.Deploy.0 = Debug|x64
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Debug|x86.ActiveCfg = Debug|x86
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Debug|x86.Build.0 = Debug|x86
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Debug|x86.Deploy.0 = Debug|x86
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Release|Any CPU.ActiveCfg = Release|x86
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Release|ARM.ActiveCfg = Release|ARM
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Release|ARM.Build.0 = Release|ARM
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Release|ARM.Deploy.0 = Release|ARM
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Release|x64.ActiveCfg = Release|x64
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Release|x64.Build.0 = Release|x64
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Release|x64.Deploy.0 = Release|x64
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Release|x86.ActiveCfg = Release|x86
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Release|x86.Build.0 = Release|x86
+		{F976713A-4DA9-4938-A14A-C4BA0AA5B233}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

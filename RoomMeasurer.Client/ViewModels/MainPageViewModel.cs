@@ -1,10 +1,9 @@
 ﻿namespace RoomMeasurer.Client.ViewModels
 {
     using System.Windows.Input;
-    using Utilities;
-
     using Contracts;
     using Pages;
+    using Utilities;
 
     public class MainPageViewModel : BaseViewModel
     {
@@ -12,11 +11,19 @@
         {
             this.NavigationService = new NavigationService();
             this.GoToMeasureFromExistingImageCommand = new DelegateCommand(this.HandleGoToMeasureFromExistingImage);
+            this.GoToSetCameraFocusCommand = new DelegateCommand(this.HandleGoToSetCameraFocus);
         }
 
         public ICommand GoToMeasureFromExistingImageCommand { get; set; }
 
+        public ICommand GoToSetCameraFocusCommand { get; set; }
+
         public INavigationService NavigationService { get; private set; }
+
+        private void HandleGoToSetCameraFocus()
+        {
+            this.NavigationService.Navigate(typeof(SetCameraFocusPage));
+        }
 
         private void HandleGoToMeasureFromExistingImage()
         {

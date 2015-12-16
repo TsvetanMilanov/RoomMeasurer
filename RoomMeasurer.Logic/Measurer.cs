@@ -2,9 +2,9 @@
 
 namespace RoomMeasurer.Logic
 {
-    public class Measurer
+    public static class Measurer
     {
-        public List<double> GetEdgeDistances(
+        public static List<double> GetEdgeDistances(
             double[] projectedEdgeHeights,
             double focalDistance,
             double projectedReferenceHeight,
@@ -24,7 +24,7 @@ namespace RoomMeasurer.Logic
             return edgeDistances;
         }
 
-        public double GetCameraFocalDistance(double distance, double actualHeight, double projectedHeight)
+        public static double GetCameraFocalDistance(double distance, double actualHeight, double projectedHeight)
         {
             return distance * projectedHeight / actualHeight;
         }

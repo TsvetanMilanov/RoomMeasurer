@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="RoomMeasurer.Client.Pages.SetCameraFocusPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RoomMeasurer.Client"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:viewModels="using:RoomMeasurer.Client.ViewModels">
+
+    <Page.Resources>
+        <Style x:Key="inputLabelStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="inputBoxStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        
+        <StackPanel  VerticalAlignment="Center" Grid.Row="0">
+
+            <TextBlock Text="Object distance" 
+                       Style="{StaticResource inputLabelStyle}"/>
+            <TextBox x:Name="distance"
+                       Style="{StaticResource inputBoxStyle}"
+                        Text="{Binding Distance, Mode=TwoWay}"/>
+
+            <TextBlock Text="Real object size"
+                       Style="{StaticResource inputLabelStyle}" />
+            <TextBox x:Name="realSize"
+                       Style="{StaticResource inputBoxStyle}"
+                        Text="{Binding RealSize, Mode=TwoWay}"/>
+
+            <TextBlock Text="Projected size (should be calculated from image, this is for testing purposes only!)"
+                       Style="{StaticResource inputLabelStyle}" />
+            <TextBox x:Name="projectedSize"
+                       Style="{StaticResource inputBoxStyle}"
+                        Text="{Binding ProjectedSize, Mode=TwoWay}"/>
+
+            <Button Content="Calculate focus"
+                    Margin="5 25 5 5"
+                    Command="{Binding CalculateFocusCommand}"/>
+
+            <TextBlock Text="Calculated focus:"
+                       Style="{StaticResource inputLabelStyle}" />
+            <TextBlock x:Name="calculatedFocus"
+                       Text="{Binding CalculatedFocus, Mode=TwoWay}" />
+
+        </StackPanel>
+
+    </Grid>
+
+</Page>

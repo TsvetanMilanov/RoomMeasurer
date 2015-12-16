@@ -26,16 +26,22 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Button Name="measureFromExistingImageButton"
                     Content="Measure from existing image"
                     Style="{StaticResource MainMenuButtonStyle}"
                     Command="{Binding GoToMeasureFromExistingImageCommand}"
                     Grid.Row="0"/>
+            <Button Name="setCameraFocusButton"
+                    Content="Set camera focal distance"
+                    Style="{StaticResource MainMenuButtonStyle}"
+                    Command="{Binding GoToSetCameraFocusCommand}"
+                    Grid.Row="1"/>
             <Button Name="exitButton"
                     Content="Exit"
                     Style="{StaticResource MainMenuButtonStyle}"
-                    Grid.Row="1"/>
+                    Grid.Row="2"/>
         </Grid>
     </Grid>
 </Page>

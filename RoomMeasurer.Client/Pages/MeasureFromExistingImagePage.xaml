@@ -5,9 +5,31 @@
     xmlns:local="using:RoomMeasurer.Client.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:commands="using:RoomMeasurer.Client.AttachedProperties"
     mc:Ignorable="d">
-
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="Second page." />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110" />
+            <RowDefinition Height="1*"  />
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Grid.Row="0">
+            <TextBlock Name="tbChoosePhoto"
+                    Text="Choose a photo" />
+            <Button Content="Browse"
+                    CommandParameter="{Binding ElementName=canvasImageContainer}"
+                    Command="{Binding BrowsePicturesCommand}"/>
+
+            <TextBlock Text="Enter the reference object height:" />
+            <TextBox PlaceholderText="Reference object height"
+                     InputScope="Number" />
+        </StackPanel>
+        <Canvas Name="canvasImageContainer"
+                commands:CanvasCommands.Tap="{Binding Tap}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Grid.Row="1" />
     </Grid>
 </Page>

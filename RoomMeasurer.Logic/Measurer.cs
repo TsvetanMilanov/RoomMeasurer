@@ -29,7 +29,7 @@ namespace RoomMeasurer.Logic
             return distance * projectedHeight / actualHeight;
         }
 
-        private static double GetRealHeight(double projectedHeight, double projectedReferenceHeight, double actualReferenceHeight)
+        public static double GetRealHeight(double projectedHeight, double projectedReferenceHeight, double actualReferenceHeight)
         {
             var scale = actualReferenceHeight / projectedReferenceHeight;
             var realHeight = projectedHeight * scale;

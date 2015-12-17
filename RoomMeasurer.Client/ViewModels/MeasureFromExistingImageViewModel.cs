@@ -16,18 +16,39 @@
     using Windows.UI.Xaml.Shapes;
 
     using Utilities;
-
+    using System.Collections.Generic;
+    using Logic;
     public class MeasureFromExistingImageViewModel : BaseViewModel
     {
+        private double calculatedHeight;
+
         public MeasureFromExistingImageViewModel()
         {
             this.BrowsePicturesCommand = new DelegateCommandWithParameter<Canvas>(this.ExecuteBrowseCommand);
             this.Tap = new DelegateCommandWithParameter<TappedRoutedEventArgs>(this.ExecuteTappedCommand);
+            this.CalculateHeight = new DelegateCommandWithParameter<Canvas>(this.ExecuteCalculateHeightCommand);
         }
 
         public ICommand BrowsePicturesCommand { get; set; }
 
         public ICommand Tap { get; set; }
+
+        public ICommand CalculateHeight { get; set; }
+
+        public double CalculatedHeight
+        {
+            get
+            {
+                return this.calculatedHeight;
+            }
+            set
+            {
+                this.calculatedHeight = value;
+                this.RaisePropertyChanged("CalculatedHeight");
+            }
+        }
+
+        public string ReferenceObjectHeight { get; set; }
 
         private async void ExecuteBrowseCommand(Canvas canvas)
         {
@@ -91,6 +112,39 @@
             Canvas.SetTop(circle, position.Y - circle.Height / 2);
 
             canvas.Children.Add(circle);
+        }
+
+        private void ExecuteCalculateHeightCommand(Canvas Canvas)
+        {
+            if (string.IsNullOrEmpty(this.ReferenceObjectHeight))
+            {
+                // TODO: Pop notification for the required reference height.
+                return;
+            }
+
+            // Order the top offsets descending because the first point needs to be the closest to the "ground".
+            IList<double> tappedPointsTopOffsets = Canvas.Children
+                .Where(p => p.GetType() == typeof(Ellipse))
+                .Select(p => p as Ellipse)
+                .Select(p => Canvas.GetTop(p))
+                .OrderByDescending(p => p)
+                .ToList();
+
+            if (tappedPointsTopOffsets.Count < 3)
+            {
+                // TODO: Pop notification to add more points to the canvas.
+                return;
+            }
+
+            double firstPointOffset = tappedPointsTopOffsets[0];
+            double secondPointOffset = tappedPointsTopOffsets[1];
+            double thirdPointOffset = tappedPointsTopOffsets[2];
+
+            double projectedReferenceHeight = firstPointOffset - secondPointOffset;
+            double projectedEdgeHeight = firstPointOffset - thirdPointOffset;
+            double actualReferenceHeight = double.Parse(this.ReferenceObjectHeight);
+
+            this.CalculatedHeight = Measurer.GetRealHeight(projectedEdgeHeight, projectedReferenceHeight, actualReferenceHeight);
         }
 
         private Ellipse CreateEllipse(double width, double height, Color color)

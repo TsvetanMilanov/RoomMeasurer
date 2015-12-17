@@ -7,26 +7,36 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:commands="using:RoomMeasurer.Client.AttachedProperties"
     mc:Ignorable="d">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource BackgroundColorBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="110" />
+            <RowDefinition Height="70   " />
             <RowDefinition Height="1*"  />
-            <RowDefinition Height="50"  />
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
         <StackPanel HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    Grid.Row="0">
-            <TextBlock Name="tbChoosePhoto"
-                    Text="Choose a photo" />
-            <Button Content="Browse"
+                    Grid.Row="0"
+                    Background="{StaticResource MenuColor}">
+            
+            <Button Content="Browse photo"
                     CommandParameter="{Binding ElementName=canvasImageContainer}"
-                    Command="{Binding BrowsePicturesCommand}"/>
+                    Command="{Binding BrowsePicturesCommand}"
+                    Style="{StaticResource ButtonStyle}"/>
 
-            <TextBlock Text="Enter the reference object height:" />
-            <TextBox PlaceholderText="Reference object height"
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Reference height:" 
+                       Style="{StaticResource TextBlockStyle}"/>
+                <TextBox Grid.Column="1" PlaceholderText="Reference object height"
                      Text="{Binding ReferenceObjectHeight, Mode=TwoWay}"
-                     InputScope="Number" />
+                     InputScope="Number" 
+                         Style="{StaticResource TextBoxStyle}"/>
+            </Grid>
+            
         </StackPanel>
         <Canvas Name="canvasImageContainer"
                 commands:CanvasCommands.Tap="{Binding Tap}"
@@ -42,12 +52,14 @@
                 <TextBlock Name="tbHeightResult"
                            Text="{Binding CalculatedHeight}"
                            HorizontalAlignment="Stretch"
-                           Grid.Column="0"/>
+                           Grid.Column="0"
+                           Style="{StaticResource TextBlockStyle}"/>
 
                 <Button Content="Calculate"
                         CommandParameter="{Binding ElementName=canvasImageContainer}"
                         Command="{Binding CalculateHeight}"
-                        Grid.Column="1"/>
+                        Grid.Column="1"
+                        Style="{StaticResource ButtonStyle}"/>
             </Grid>
         </StackPanel>
     </Grid>

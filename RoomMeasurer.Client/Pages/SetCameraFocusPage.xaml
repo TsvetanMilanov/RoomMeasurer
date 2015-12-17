@@ -19,42 +19,62 @@
         </Style>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource BackgroundColorBrush}"
+          Padding="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="140" />
         </Grid.RowDefinitions>
-        
-        <StackPanel  VerticalAlignment="Center" Grid.Row="0">
 
-            <TextBlock Text="Object distance" 
-                       Style="{StaticResource inputLabelStyle}"/>
-            <TextBox x:Name="distance"
-                       Style="{StaticResource inputBoxStyle}"
-                        Text="{Binding Distance, Mode=TwoWay}"/>
+        <Grid  VerticalAlignment="Bottom" Grid.Row="1"
+               Background="{StaticResource MenuColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Real object size"
-                       Style="{StaticResource inputLabelStyle}" />
-            <TextBox x:Name="realSize"
-                       Style="{StaticResource inputBoxStyle}"
-                        Text="{Binding RealSize, Mode=TwoWay}"/>
+            <TextBlock Grid.Row="0" Grid.Column="0"
+                       Style="{StaticResource TextBlockStyle}"
+                       Text="Distance"/>
+            <TextBox Grid.Row="0" Grid.Column="1"
+                x:Name="distance"
+                       Style="{StaticResource TextBoxStyle}"
+                        Text="{Binding Distance, Mode=TwoWay}"
+                         PlaceholderText="Distance"/>
 
-            <TextBlock Text="Projected size (should be calculated from image, this is for testing purposes only!)"
-                       Style="{StaticResource inputLabelStyle}" />
-            <TextBox x:Name="projectedSize"
-                       Style="{StaticResource inputBoxStyle}"
-                        Text="{Binding ProjectedSize, Mode=TwoWay}"/>
+            <TextBlock Grid.Row="1" Grid.Column="0"
+                       Style="{StaticResource TextBlockStyle}"
+                       Text="Size"/>
+            <TextBox Grid.Row="1" Grid.Column="1"
+                x:Name="realSize"
+                       Style="{StaticResource TextBoxStyle}"
+                        Text="{Binding RealSize, Mode=TwoWay}"
+                         PlaceholderText="Size"/>
 
-            <Button Content="Calculate focus"
-                    Margin="5 25 5 5"
-                    Command="{Binding CalculateFocusCommand}"/>
+            <TextBlock Grid.Row="2" Grid.Column="0"
+                       Style="{StaticResource TextBlockStyle}"
+                       Text="Projected Size"/>
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     x:Name="projectedSize"
+                       Style="{StaticResource TextBoxStyle}"
+                        Text="{Binding ProjectedSize, Mode=TwoWay}"
+                         PlaceholderText="Projected size"/>
 
-            <TextBlock Text="Calculated focus:"
-                       Style="{StaticResource inputLabelStyle}" />
-            <TextBlock x:Name="calculatedFocus"
-                       Text="{Binding CalculatedFocus, Mode=TwoWay}" />
-
-        </StackPanel>
+            <Button Grid.Row="3" Grid.Column="0"
+                    Content="Calculate focus"
+                    Command="{Binding CalculateFocusCommand}"
+                    Style="{StaticResource ButtonStyle}"/>
+            <TextBlock Grid.Row="3" Grid.Column="1"
+                       x:Name="calculatedFocus"
+                       Text="{Binding CalculatedFocus, Mode=TwoWay}" 
+                           Style="{StaticResource TextBlockStyle}"/>
+        </Grid>
 
     </Grid>
 

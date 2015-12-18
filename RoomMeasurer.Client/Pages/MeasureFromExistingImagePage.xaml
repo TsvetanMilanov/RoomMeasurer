@@ -11,7 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="1*"  />
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel HorizontalAlignment="Stretch"

@@ -8,72 +8,47 @@
     mc:Ignorable="d"
     xmlns:viewModels="using:RoomMeasurer.Client.ViewModels">
 
-    <Page.Resources>
-        <Style x:Key="inputLabelStyle" TargetType="TextBlock">
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-        </Style>
-        <Style x:Key="inputBoxStyle" TargetType="TextBox">
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-        </Style>
-    </Page.Resources>
-
-    <Grid Background="{StaticResource BackgroundColorBrush}"
-          Padding="5">
+    <Grid Background="{StaticResource BackgroundColorBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="140" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Grid  VerticalAlignment="Bottom" Grid.Row="1"
                Background="{StaticResource MenuColor}">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0"
-                       Style="{StaticResource TextBlockStyle}"
-                       Text="Distance"/>
-            <TextBox Grid.Row="0" Grid.Column="1"
-                x:Name="distance"
+            <TextBox Grid.Row="0" Grid.Column="0"
                        Style="{StaticResource TextBoxStyle}"
-                        Text="{Binding Distance, Mode=TwoWay}"
-                         PlaceholderText="Distance"/>
-
-            <TextBlock Grid.Row="1" Grid.Column="0"
-                       Style="{StaticResource TextBlockStyle}"
-                       Text="Size"/>
-            <TextBox Grid.Row="1" Grid.Column="1"
-                x:Name="realSize"
+                         PlaceholderText="Distance"
+                     Text="{Binding Distance, Mode=TwoWay}"/>
+            <TextBox Grid.Row="1" Grid.Column="0"
                        Style="{StaticResource TextBoxStyle}"
-                        Text="{Binding RealSize, Mode=TwoWay}"
-                         PlaceholderText="Size"/>
-
-            <TextBlock Grid.Row="2" Grid.Column="0"
-                       Style="{StaticResource TextBlockStyle}"
-                       Text="Projected Size"/>
-            <TextBox Grid.Row="2" Grid.Column="1"
-                     x:Name="projectedSize"
+                         PlaceholderText="Size"
+                     Text="{Binding RealSize, Mode=TwoWay}"/>
+            <TextBox Grid.Row="2" Grid.Column="0"
                        Style="{StaticResource TextBoxStyle}"
-                        Text="{Binding ProjectedSize, Mode=TwoWay}"
-                         PlaceholderText="Projected size"/>
+                         PlaceholderText="Projected size"
+                     Text="{Binding ProjectedSize, Mode=TwoWay}"/>
 
-            <Button Grid.Row="3" Grid.Column="0"
+            <Button Grid.Row="0" Grid.Column="1"
                     Content="Calculate focus"
                     Command="{Binding CalculateFocusCommand}"
                     Style="{StaticResource ButtonStyle}"/>
-            <TextBlock Grid.Row="3" Grid.Column="1"
+            
+            <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"
                        x:Name="calculatedFocus"
                        Text="{Binding CalculatedFocus, Mode=TwoWay}" 
-                           Style="{StaticResource TextBlockStyle}"/>
+                           Style="{StaticResource TextBlockStyle}"
+                       FontSize="35"/>
         </Grid>
 
     </Grid>

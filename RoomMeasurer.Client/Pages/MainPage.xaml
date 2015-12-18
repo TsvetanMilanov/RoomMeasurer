@@ -13,14 +13,14 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="150" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
                     Text="{StaticResource AppTitle}"
                    Style="{StaticResource TitleStyle}"/>
 
-        <Grid Grid.Row="2" VerticalAlignment="Stretch">
+        <Grid Grid.Row="2" VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*" />

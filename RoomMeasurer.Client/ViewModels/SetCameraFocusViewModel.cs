@@ -14,11 +14,11 @@
             this.CalculateFocusCommand = new DelegateCommand(this.CalculateFocus);
         }
 
-        public double RealSize { get; set; }
+        public string RealSize { get; set; }
 
-        public double ProjectedSize { get; set; }
+        public string ProjectedSize { get; set; }
 
-        public double Distance { get; set; }
+        public string Distance { get; set; }
 
         private double calculatedFocus;
 
@@ -35,12 +35,27 @@
 
         internal void CalculateFocus()
         {
-            if (this.RealSize == 0 || this.ProjectedSize == 0 || this.Distance == 0)
+            // TODO: error notifications for invalid input
+            if (this.RealSize == null || this.ProjectedSize == null || this.Distance == null)
             {
                 return;
             }
 
-            this.CalculatedFocus = Measurer.GetCameraFocalDistance(this.Distance, this.RealSize, this.ProjectedSize);
+            double parsedRealSize = 0;
+            double.TryParse(this.RealSize, out parsedRealSize);
+
+            double parsedProjectedSize = 0;
+            double.TryParse(this.ProjectedSize, out parsedProjectedSize);
+
+            double parsedDistance = 0;
+            double.TryParse(this.Distance, out parsedDistance);
+
+            if (parsedRealSize == 0 || parsedProjectedSize == 0 || parsedDistance == 0)
+            {
+                return;
+            }
+
+            this.CalculatedFocus = Measurer.GetCameraFocalDistance(parsedDistance, parsedRealSize, parsedProjectedSize);
         }
     }
 }

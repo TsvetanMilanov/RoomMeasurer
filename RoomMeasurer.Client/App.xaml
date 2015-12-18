@@ -23,6 +23,15 @@
             <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
         </Style>
 
+        <Style x:Key="ResultBlockStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="FontSize" Value="35" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+        </Style>
+
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="FontSize" Value="15" />
@@ -30,7 +39,7 @@
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
-            <Setter Property="Background" Value="{StaticResource MenuColor}"/>
+            <Setter Property="Background" Value="{StaticResource TextBoxBgColor}"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
 
@@ -49,6 +58,8 @@
         <SolidColorBrush x:Key="TextBrush" Color="#fff"/>
 
         <SolidColorBrush x:Key="MenuColor" Color="#555"/>
+        
+        <SolidColorBrush x:Key="TextBoxBgColor" Color="#fff"/>
 
     </Application.Resources>
 </Application>

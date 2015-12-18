@@ -58,8 +58,7 @@
             // Order the top offsets descending because the first point needs to be the closest to the "ground".
             IList<double> tappedPointsTopOffsets = Canvas.Children
                 .Where(p => p.GetType() == typeof(Ellipse))
-                .Select(p => p as Ellipse)
-                .Select(p => Canvas.GetTop(p))
+                .Select(p => Canvas.GetTop(p as Ellipse))
                 .OrderByDescending(p => p)
                 .ToList();
 

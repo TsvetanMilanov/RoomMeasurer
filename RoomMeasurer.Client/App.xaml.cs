@@ -76,10 +76,10 @@ namespace RoomMeasurer.Client
                 // visibility of the Back button
                 SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                    rootFrame.CanGoBack ?
-                    AppViewBackButtonVisibility.Visible :
-                    AppViewBackButtonVisibility.Collapsed;
+                //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                //    rootFrame.CanGoBack ?
+                //    AppViewBackButtonVisibility.Visible :
+                //    AppViewBackButtonVisibility.Collapsed;
             }
 
             if (rootFrame.Content == null)

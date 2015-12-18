@@ -6,12 +6,10 @@
 
     public class SetCameraFocusViewModel : BaseViewModel
     {
-        private NavigationService NavigationService;
-
         public SetCameraFocusViewModel()
         {
-            this.NavigationService = new NavigationService();
             this.CalculateFocusCommand = new DelegateCommand(this.CalculateFocus);
+            GetSavedFocus();
         }
 
         public string RealSize { get; set; }
@@ -30,6 +28,10 @@
             }
         }
 
+        private async void GetSavedFocus()
+        {
+            this.CalculatedFocus = await this.Data.GetFoucsDistance();
+        }
 
         public ICommand CalculateFocusCommand { get; private set; }
 
@@ -56,6 +58,8 @@
             }
 
             this.CalculatedFocus = Measurer.GetCameraFocalDistance(parsedDistance, parsedRealSize, parsedProjectedSize);
+
+            this.Data.SaveFocusDistance(this.CalculatedFocus);
         }
     }
 }

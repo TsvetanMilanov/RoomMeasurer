@@ -40,7 +40,7 @@
                      Text="{Binding ProjectedSize, Mode=TwoWay}"/>
 
             <Button Grid.Row="0" Grid.Column="1"
-                    Content="Calculate focus"
+                    Content="Recalculate focus"
                     Command="{Binding CalculateFocusCommand}"
                     Style="{StaticResource ButtonStyle}"/>
             

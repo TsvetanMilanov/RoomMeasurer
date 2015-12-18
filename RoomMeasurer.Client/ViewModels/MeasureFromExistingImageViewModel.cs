@@ -124,7 +124,7 @@
             canvas.Children.Add(circle);
         }
 
-        private void ExecuteCalculateHeightCommand(Canvas Canvas)
+        private async void ExecuteCalculateHeightCommand(Canvas Canvas)
         {
             if (string.IsNullOrEmpty(this.ReferenceObjectHeight))
             {
@@ -154,6 +154,9 @@
             double actualReferenceHeight = double.Parse(this.ReferenceObjectHeight);
 
             this.CalculatedHeight = Measurer.GetRealHeight(projectedEdgeHeight, projectedReferenceHeight, actualReferenceHeight);
+
+            var focusDistance = await this.Data.GetFoucsDistance();
+            var distance = Measurer.GetEdgeDistances(new double[] { 155 }, focusDistance, projectedReferenceHeight, actualReferenceHeight);
         }
         
         private async void ExecuteTakePhotoWithCameraCommand(Canvas canvas)

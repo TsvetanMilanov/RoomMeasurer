@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="AttachedProperties\CanvasCommands.cs" />
     <Compile Include="Contracts\INavigationService.cs" />
+    <Compile Include="DB\Data.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -159,6 +160,11 @@
       <Project>{fdebc62e-1fd4-4790-89dd-354a8e119838}</Project>
       <Name>RoomMeasurer.Logic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="SQLite.UAP.2015, Version=3.9.2">
+      <Name>SQLite for Universal App Platform</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

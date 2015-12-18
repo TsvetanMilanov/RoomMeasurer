@@ -18,6 +18,8 @@
     using Utilities;
     using System.Collections.Generic;
     using Logic;
+    using Windows.Media.Capture;
+    using Windows.Storage.Provider;
     public class MeasureFromExistingImageViewModel : BaseViewModel
     {
         private double calculatedHeight;
@@ -27,6 +29,7 @@
             this.BrowsePicturesCommand = new DelegateCommandWithParameter<Canvas>(this.ExecuteBrowseCommand);
             this.Tap = new DelegateCommandWithParameter<TappedRoutedEventArgs>(this.ExecuteTappedCommand);
             this.CalculateHeight = new DelegateCommandWithParameter<Canvas>(this.ExecuteCalculateHeightCommand);
+            this.TakePhotoWithCameraCommand = new DelegateCommandWithParameter<Canvas>(this.ExecuteTakePhotoWithCameraCommand);
         }
 
         public ICommand BrowsePicturesCommand { get; set; }
@@ -34,6 +37,8 @@
         public ICommand Tap { get; set; }
 
         public ICommand CalculateHeight { get; set; }
+
+        public ICommand TakePhotoWithCameraCommand { get; set; }
 
         public double CalculatedHeight
         {
@@ -66,23 +71,28 @@
 
             if (file != null)
             {
-                Image openedImage = await this.CreateImageFromStorageFileAsync(file);
-                if (openedImage == null)
-                {
-                    return;
-                }
-
-                openedImage.MaxHeight = canvas.ActualHeight;
-                openedImage.MaxWidth = canvas.ActualWidth;
-
-                // Clear the Canvas when new image for the background is selected.
-                canvas.Children.Clear();
-
-                ImageBrush imageBrush = new ImageBrush();
-                imageBrush.ImageSource = openedImage.Source;
-                imageBrush.Stretch = Stretch.Uniform;
-                canvas.Background = imageBrush;
+                this.SetCanvasBackgroundToImage(file, canvas);
             }
+        }
+
+        private async void SetCanvasBackgroundToImage(IStorageFile file, Canvas canvas)
+        {
+            Image openedImage = await this.CreateImageFromStorageFileAsync(file);
+            if (openedImage == null)
+            {
+                return;
+            }
+
+            openedImage.MaxHeight = canvas.ActualHeight;
+            openedImage.MaxWidth = canvas.ActualWidth;
+
+            // Clear the Canvas when new image for the background is selected.
+            canvas.Children.Clear();
+
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = openedImage.Source;
+            imageBrush.Stretch = Stretch.Uniform;
+            canvas.Background = imageBrush;
         }
 
         private void ExecuteTappedCommand(TappedRoutedEventArgs args)
@@ -146,6 +156,41 @@
 
             this.CalculatedHeight = Measurer.GetRealHeight(projectedEdgeHeight, projectedReferenceHeight, actualReferenceHeight);
         }
+        
+        private async void ExecuteTakePhotoWithCameraCommand(Canvas canvas)
+        {
+            var camera = new CameraCaptureUI();
+
+            var photo = await camera.CaptureFileAsync(CameraCaptureUIMode.Photo);
+            
+            // Create and configure the file picker.
+            var savePicker = new FileSavePicker();
+            savePicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            savePicker.FileTypeChoices.Add("Plain Text", new List<string>() { ".jpg" });
+            savePicker.SuggestedFileName = "IMG_" + DateTime.Now;
+
+            StorageFile file = await savePicker.PickSaveFileAsync();
+            if (file != null)
+            {
+                // Lock the file so that other apps can't change it.
+                CachedFileManager.DeferUpdates(file);
+
+                // Copy the temp image to the new file.
+                await FileIO.WriteBufferAsync(file, await FileIO.ReadBufferAsync(photo));
+
+                // Unlock the file.
+                FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
+
+                if (status == FileUpdateStatus.Complete)
+                {
+                    this.SetCanvasBackgroundToImage(file, canvas);
+                }
+                else
+                {
+                    // TODO: Notification for error.
+                }
+            }
+        }
 
         private Ellipse CreateEllipse(double width, double height, Color color)
         {
@@ -157,7 +202,7 @@
             return ellipse;
         }
 
-        private async Task<Image> CreateImageFromStorageFileAsync(StorageFile file)
+        private async Task<Image> CreateImageFromStorageFileAsync(IStorageFile file)
         {
             var image = new Image();
 

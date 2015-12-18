@@ -19,7 +19,11 @@
 
         public void GoBack()
         {
-            ((Frame)Window.Current.Content).GoBack();
+            var frame = ((Frame)Window.Current.Content);
+            if (frame.CanGoBack)
+            {
+                frame.GoBack();
+            }
         }
     }
 }

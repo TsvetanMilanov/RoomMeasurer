@@ -18,11 +18,23 @@
                     VerticalAlignment="Stretch"
                     Grid.Row="0"
                     Background="{StaticResource MenuColor}">
-            
-            <Button Content="Browse photo"
-                    CommandParameter="{Binding ElementName=canvasImageContainer}"
-                    Command="{Binding BrowsePicturesCommand}"
-                    Style="{StaticResource ButtonStyle}"/>            
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Button Content="Browse photo"
+                        Grid.Column="0"
+                        CommandParameter="{Binding ElementName=canvasImageContainer}"
+                        Command="{Binding BrowsePicturesCommand}"
+                        Style="{StaticResource ButtonStyle}"/>
+                <Button Content="Camera"
+                        Grid.Column="1"
+                        CommandParameter="{Binding ElementName=canvasImageContainer}"
+                        Command="{Binding TakePhotoWithCameraCommand}"
+                        Style="{StaticResource ButtonStyle}"/>
+            </Grid>
             
         </StackPanel>
         

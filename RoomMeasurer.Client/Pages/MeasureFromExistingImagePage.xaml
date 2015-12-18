@@ -5,47 +5,18 @@
     xmlns:local="using:RoomMeasurer.Client.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:commands="using:RoomMeasurer.Client.AttachedProperties"
+    xmlns:controls="using:RoomMeasurer.Client.Controls"
     mc:Ignorable="d">
     <Grid Background="{ThemeResource BackgroundColorBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
             <RowDefinition Height="1*"  />
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Grid.Row="0"
-                    Background="{StaticResource MenuColor}">
+        <controls:CanvasWithSelectableBackground x:Name="canvasImageContainer"
+                                    Grid.Row="0" />
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                </Grid.ColumnDefinitions>
-                <Button Content="Browse photo"
-                        Grid.Column="0"
-                        CommandParameter="{Binding ElementName=canvasImageContainer}"
-                        Command="{Binding BrowsePicturesCommand}"
-                        Style="{StaticResource ButtonStyle}"/>
-                <Button Content="Camera"
-                        Grid.Column="1"
-                        CommandParameter="{Binding ElementName=canvasImageContainer}"
-                        Command="{Binding TakePhotoWithCameraCommand}"
-                        Style="{StaticResource ButtonStyle}"/>
-            </Grid>
-            
-        </StackPanel>
-        
-        <Canvas Name="canvasImageContainer"
-                commands:CanvasCommands.Tap="{Binding Tap}"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Grid.Row="1" />
-        
-        <StackPanel Grid.Row="2" Background="{StaticResource MenuColor}">
-            
+        <StackPanel Grid.Row="1" Background="{StaticResource MenuColor}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -62,7 +33,7 @@
                          Style="{StaticResource TextBoxStyle}"/>
             
                 <Button Content="Calculate height"
-                        CommandParameter="{Binding ElementName=canvasImageContainer}"
+                        CommandParameter="{Binding ElementName=canvasImageContainer, Path=Canvas}"
                         Command="{Binding CalculateHeight}"
                         Grid.Row="1"
                         Grid.Column="0"

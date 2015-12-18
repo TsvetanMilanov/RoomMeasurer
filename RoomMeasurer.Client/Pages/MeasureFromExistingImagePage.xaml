@@ -34,7 +34,7 @@
             
                 <Button Content="Calculate height"
                         CommandParameter="{Binding ElementName=canvasImageContainer, Path=Canvas}"
-                        Command="{Binding CalculateHeight}"
+                        Command="{Binding Calculate}"
                         Grid.Row="1"
                         Grid.Column="0"
                         Style="{StaticResource ButtonStyle}"/>

@@ -1,5 +1,6 @@
 ﻿namespace RoomMeasurer.Client.ViewModels
 {
+    using System;
     using System.Windows.Input;
     using Pages;
     using Utilities;
@@ -10,11 +11,19 @@
         {
             this.GoToMeasureFromExistingImageCommand = new DelegateCommand(this.HandleGoToMeasureFromExistingImage);
             this.GoToSetCameraFocusCommand = new DelegateCommand(this.HandleGoToSetCameraFocus);
+            this.GoToStartMeasuringRoomCommand = new DelegateCommand(this.HandleGoToStartMeasuringRoom);
         }
 
         public ICommand GoToMeasureFromExistingImageCommand { get; set; }
 
         public ICommand GoToSetCameraFocusCommand { get; set; }
+
+        public ICommand GoToStartMeasuringRoomCommand { get; set; }
+
+        private void HandleGoToStartMeasuringRoom()
+        {
+            this.NavigationService.Navigate(typeof(MeasureWithReferencePage));
+        }
 
         private void HandleGoToSetCameraFocus()
         {

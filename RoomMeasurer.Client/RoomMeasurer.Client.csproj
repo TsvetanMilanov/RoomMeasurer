@@ -110,6 +110,9 @@
     <Compile Include="Pages\MeasureFromExistingImagePage.xaml.cs">
       <DependentUpon>MeasureFromExistingImagePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MeasureWithReferencePage.xaml.cs">
+      <DependentUpon>MeasureWithReferencePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SetCameraFocusPage.xaml.cs">
       <DependentUpon>SetCameraFocusPage.xaml</DependentUpon>
     </Compile>
@@ -117,10 +120,14 @@
     <Compile Include="Utilities\DelegateCommand.cs" />
     <Compile Include="Utilities\DelegateCommandWithParameter.cs" />
     <Compile Include="Utilities\NavigationService.cs" />
+    <Compile Include="Utilities\PointsDistanceCalculator.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CalculateBaseViewModel.cs" />
     <Compile Include="ViewModels\CanvasWithSelectableBackgroundViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MeasureFromExistingImageViewModel.cs" />
+    <Compile Include="ViewModels\MeasureWithoutReferenceViewModel.cs" />
+    <Compile Include="ViewModels\MeasureWithReferenceViewModel.cs" />
     <Compile Include="ViewModels\SetCameraFocusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +154,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\CanvasWithSelectableBackground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MeasureWithReferencePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

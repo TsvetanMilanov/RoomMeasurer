@@ -1,36 +1,19 @@
 ﻿namespace RoomMeasurer.Client.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using System.Windows.Input;
-    using Windows.Foundation;
-    using Windows.Storage;
-    using Windows.Storage.Pickers;
-    using Windows.Storage.Streams;
-    using Windows.UI;
     using Windows.UI.Xaml.Controls;
-    using Windows.UI.Xaml.Input;
-    using Windows.UI.Xaml.Media;
-    using Windows.UI.Xaml.Media.Imaging;
     using Windows.UI.Xaml.Shapes;
-    using Windows.Media.Capture;
-    using Windows.Storage.Provider;
 
     using Logic;
     using Utilities;
+    using ViewModels;
+    using System;
 
-    public class MeasureFromExistingImageViewModel : BaseViewModel
+    public class MeasureFromExistingImageViewModel : CalculateBaseModel<Canvas>
     {
         private double calculatedHeight;
-
-        public MeasureFromExistingImageViewModel()
-        {
-            this.CalculateHeight = new DelegateCommandWithParameter<Canvas>(this.ExecuteCalculateHeightCommand);
-        }
-
-        public ICommand CalculateHeight { get; set; }
 
         public double CalculatedHeight
         {
@@ -47,7 +30,7 @@
 
         public string ReferenceObjectHeight { get; set; }
 
-        private async void ExecuteCalculateHeightCommand(Canvas Canvas)
+        protected override async void ExecuteCalculateCommand(Canvas canvas)
         {
             if (string.IsNullOrEmpty(this.ReferenceObjectHeight))
             {
@@ -56,7 +39,7 @@
             }
 
             // Order the top offsets descending because the first point needs to be the closest to the "ground".
-            IList<double> tappedPointsTopOffsets = Canvas.Children
+            IList<double> tappedPointsTopOffsets = canvas.Children
                 .Where(p => p.GetType() == typeof(Ellipse))
                 .Select(p => Canvas.GetTop(p as Ellipse))
                 .OrderByDescending(p => p)
@@ -81,5 +64,6 @@
             var focusDistance = await this.Data.GetFoucsDistance();
             var distance = Measurer.GetEdgeDistances(new double[] { 155 }, focusDistance, projectedReferenceHeight, actualReferenceHeight);
         }
+
     }
 }

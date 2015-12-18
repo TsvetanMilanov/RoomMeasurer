@@ -77,7 +77,19 @@
             savePicker.FileTypeChoices.Add("Image", new List<string>() { ".jpg" });
             savePicker.SuggestedFileName = "IMG_" + DateTime.Now;
 
-            StorageFile file = await savePicker.PickSaveFileAsync();
+            StorageFile file = null;
+
+            // Need the check for exception because of random UnauthorizedAccessException (emulator restart fixes the problem).
+            try
+            {
+                file = await savePicker.PickSaveFileAsync();
+            }
+            catch (UnauthorizedAccessException exception)
+            {
+                // TODO: Show notification for unauthorized access.
+                return;
+            }
+
             if (file != null)
             {
                 // Lock the file so that other apps can't change it.

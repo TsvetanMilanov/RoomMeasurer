@@ -26,16 +26,21 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
+            <Button Name="startMeasuringRoomButton"
+                    Content="Start measuring room"
+                    Style="{StaticResource ButtonStyle}"
+                    Command="{Binding GoToStartMeasuringRoomCommand}"
+                    Grid.Row="0"/>
             <Button Name="measureFromExistingImageButton"
                     Content="Measure from existing image"
                     Style="{StaticResource ButtonStyle}"
                     Command="{Binding GoToMeasureFromExistingImageCommand}"
-                    Grid.Row="0"/>
+                    Grid.Row="1"/>
             <Button Name="calibrateCameraBtn"
                     Content="Calibrate camera"
                     Style="{StaticResource ButtonStyle}"
                     Command="{Binding GoToSetCameraFocusCommand}"
-                    Grid.Row="1"/>
+                    Grid.Row="2"/>
         </Grid>
     </Grid>
 </Page>

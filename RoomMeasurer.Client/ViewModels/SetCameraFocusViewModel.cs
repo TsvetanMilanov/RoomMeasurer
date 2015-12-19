@@ -35,12 +35,12 @@
 
         public ICommand CalculateFocusCommand { get; private set; }
 
-        internal void CalculateFocus()
+        private void CalculateFocus()
         {
             // TODO: error notifications for invalid input
-            if (this.RealSize == null || this.ProjectedSize == null || this.Distance == null)
+            if (this.Distance == null || this.RealSize == null)
             {
-                return;
+                throw new NullReferenceException("Distance or RealSize not set.");
             }
 
             double parsedRealSize = 0;
@@ -62,9 +62,26 @@
             this.Data.SaveFocusDistance(this.CalculatedFocus);
         }
 
-        protected override void ExecuteCalculateCommand(Canvas param)
+        protected override void ExecuteCalculateCommand(Canvas canvas)
         {
-            throw new NotImplementedException();
+            if (this.Distance == null)
+            {
+                throw new NullReferenceException("Canvas cannot be null.");
+            }
+
+            var tappedPointsTopOffsets = this.GetTappedPointsTopOffsets(canvas);
+
+            if (tappedPointsTopOffsets.Count != 2)
+            {
+                // TODO: Pop notification to add more points to the canvas.
+                return;
+            }
+
+            double firstPointOffset = tappedPointsTopOffsets[0];
+            double secondPointOffset = tappedPointsTopOffsets[1];
+
+            this.ProjectedSize = (firstPointOffset - secondPointOffset).ToString();
+            this.CalculateFocus();
         }
 
         private async void GetSavedFocus()

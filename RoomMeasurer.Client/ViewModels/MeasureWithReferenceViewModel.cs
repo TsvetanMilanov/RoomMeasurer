@@ -4,27 +4,13 @@
     using Windows.UI.Xaml.Controls;
 
     using Logic;
-
+    using Pages;
+    using Models;
     public class MeasureWithReferenceViewModel : CalculateBaseModel<Canvas>
     {
-        private double calculatedHeight;
-
-        public double CalculatedHeight
-        {
-            get
-            {
-                return this.calculatedHeight;
-            }
-            set
-            {
-                this.calculatedHeight = value;
-                this.RaisePropertyChanged("CalculatedHeight");
-            }
-        }
-
         public string ReferenceObjectHeight { get; set; }
 
-        protected override async void ExecuteCalculateCommand(Canvas canvas)
+        protected override void ExecuteCalculateCommand(Canvas canvas)
         {
             if (string.IsNullOrEmpty(this.ReferenceObjectHeight))
             {
@@ -45,12 +31,19 @@
             double projectedReferenceHeight = distances[0];
             double projectedEdgeHeight = distances[1];
             double actualReferenceHeight = double.Parse(this.ReferenceObjectHeight);
+            
+            // TODO: Move in final calculations page.
+            // var focusDistance = await this.Data.GetFoucsDistance();
+            // var distance = Measurer.GetEdgeDistances(new double[] { 155 }, focusDistance, projectedReferenceHeight, actualReferenceHeight);
 
-            this.CalculatedHeight = Measurer.GetRealHeight(projectedEdgeHeight, projectedReferenceHeight, actualReferenceHeight);
+            Room room = new Room(projectedReferenceHeight, actualReferenceHeight);
 
-            // TODO: Create room model and add the initial information then pass it to the next page.
-            var focusDistance = await this.Data.GetFoucsDistance();
-            var distance = Measurer.GetEdgeDistances(new double[] { 155 }, focusDistance, projectedReferenceHeight, actualReferenceHeight);
+            // TODO: Get the z index from accelerometer.
+            double zRotation = 0.5;
+            Edge edge = new Edge(projectedEdgeHeight, zRotation);
+            room.Edges.Add(edge);
+
+            this.NavigationService.Navigate(typeof(CalculationResultPage), room);
         }
     }
 }

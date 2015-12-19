@@ -112,8 +112,8 @@
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MeasureFromExistingImagePage.xaml.cs">
-      <DependentUpon>MeasureFromExistingImagePage.xaml</DependentUpon>
+    <Compile Include="Pages\MeasureHeightPage.xaml.cs">
+      <DependentUpon>MeasureHeightPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MeasureWithoutReferencePage.xaml.cs">
       <DependentUpon>MeasureWithoutReferencePage.xaml</DependentUpon>
@@ -132,9 +132,10 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CalculateBaseViewModel.cs" />
     <Compile Include="ViewModels\CalculationResultViewModel.cs" />
+    <Compile Include="Controls\CanvasWithSelectableBackgroundViewModel.cs" />
     <Compile Include="ViewModels\CanvasWithSelectableBackgroundViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="ViewModels\MeasureFromExistingImageViewModel.cs" />
+    <Compile Include="ViewModels\MeasureHeightViewModel.cs" />
     <Compile Include="ViewModels\MeasureWithoutReferenceViewModel.cs" />
     <Compile Include="ViewModels\MeasureWithReferenceViewModel.cs" />
     <Compile Include="ViewModels\SetCameraFocusViewModel.cs" />
@@ -186,7 +187,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MeasureFromExistingImagePage.xaml">
+    <Page Include="Pages\MeasureHeightPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

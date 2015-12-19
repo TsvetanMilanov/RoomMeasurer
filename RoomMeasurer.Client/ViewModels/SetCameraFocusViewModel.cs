@@ -1,11 +1,15 @@
 ﻿namespace RoomMeasurer.Client.ViewModels
 {
+    using System;
     using System.Windows.Input;
     using Logic;
     using RoomMeasurer.Client.Utilities;
+    using Windows.UI.Xaml.Controls;
 
-    public class SetCameraFocusViewModel : BaseViewModel
+    public class SetCameraFocusViewModel : CalculateBaseModel<Canvas>
     {
+        private double calculatedFocus;
+
         public SetCameraFocusViewModel()
         {
             this.CalculateFocusCommand = new DelegateCommand(this.CalculateFocus);
@@ -18,19 +22,15 @@
 
         public string Distance { get; set; }
 
-        private double calculatedFocus;
-
         public double CalculatedFocus
         {
             get { return this.calculatedFocus; }
-            set { this.calculatedFocus = value;
+
+            set
+            {
+                this.calculatedFocus = value;
                 this.RaisePropertyChanged("CalculatedFocus");
             }
-        }
-
-        private async void GetSavedFocus()
-        {
-            this.CalculatedFocus = await this.Data.GetFoucsDistance();
         }
 
         public ICommand CalculateFocusCommand { get; private set; }
@@ -60,6 +60,16 @@
             this.CalculatedFocus = Measurer.GetCameraFocalDistance(parsedDistance, parsedRealSize, parsedProjectedSize);
 
             this.Data.SaveFocusDistance(this.CalculatedFocus);
+        }
+
+        protected override void ExecuteCalculateCommand(Canvas param)
+        {
+            throw new NotImplementedException();
+        }
+
+        private async void GetSavedFocus()
+        {
+            this.CalculatedFocus = await this.Data.GetFoucsDistance();
         }
     }
 }

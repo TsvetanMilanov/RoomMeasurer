@@ -9,6 +9,9 @@ RoomMeasurer is an app that lets you quickly scan the floor plan of a room by ta
 
 ### Priority list
 - Implement distance to every edge calculation in client
+    - How to get z-rotation in emulator?
+    - Tap ellipse identification
+- Finish calibrator to calibrate from image
 - Implement instruction notifier in client
 - Implement room drawing on canvas
 - Video on Youtube

@@ -11,7 +11,7 @@
     using ViewModels;
     using System;
 
-    public class MeasureFromExistingImageViewModel : CalculateBaseModel<Canvas>
+    public class MeasureHeightViewModel : CalculateBaseModel<Canvas>
     {
         private double calculatedHeight;
 

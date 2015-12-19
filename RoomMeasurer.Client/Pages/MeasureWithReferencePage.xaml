@@ -25,28 +25,19 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <TextBox Grid.Row="0" Grid.Column="0" PlaceholderText="Reference object height"
-                     Text="{Binding ReferenceObjectHeight, Mode=TwoWay}"
-                     InputScope="Number" 
+                        Text="{Binding ReferenceObjectHeight, Mode=TwoWay}"
+                        InputScope="Number" 
                          Style="{StaticResource TextBoxStyle}"/>
 
-                <Button Content="Calculate height"
+                <Button Content="Calculate"
                         CommandParameter="{Binding ElementName=canvasImageContainer, Path=Canvas}"
                         Command="{Binding Calculate}"
-                        Grid.Row="1"
-                        Grid.Column="0"
+                        Grid.Row="0"
+                        Grid.Column="1"
                         Style="{StaticResource ButtonStyle}"/>
-
-                <TextBlock Name="tbHeightResult"
-                           Text="{Binding CalculatedHeight}"
-                           HorizontalAlignment="Stretch"
-                           Grid.Row="0"
-                           Grid.Column="1"
-                           Grid.RowSpan="2"
-                           Style="{StaticResource ResultBlockStyle}"/>
             </Grid>
         </StackPanel>
     </Grid>

@@ -8,12 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource BackgroundColorBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"  />
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="1" Background="{StaticResource MenuColor}">
+        <StackPanel Background="{StaticResource MenuColor}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -24,25 +19,25 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="0" Grid.Column="0" PlaceholderText="Reference object height"
-                     Text="{Binding ReferenceObjectHeight, Mode=TwoWay}"
-                     InputScope="Number" 
-                         Style="{StaticResource TextBoxStyle}"/>
-
-                <Button Content="Calculate height"
-                        CommandParameter="{Binding ElementName=canvasImageContainer, Path=Canvas}"
-                        Command="{Binding Calculate}"
+                <TextBlock Name="tbHeightResult"
+                           Text="{Binding CalculatedHeight}"
+                           HorizontalAlignment="Center"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Style="{StaticResource ResultBlockStyle}"/>
+                
+                <Button Content="Finish"
+                        Command="{Binding Finish}"
                         Grid.Row="1"
                         Grid.Column="0"
                         Style="{StaticResource ButtonStyle}"/>
 
-                <TextBlock Name="tbHeightResult"
-                           Text="{Binding CalculatedHeight}"
-                           HorizontalAlignment="Stretch"
-                           Grid.Row="0"
-                           Grid.Column="1"
-                           Grid.RowSpan="2"
-                           Style="{StaticResource ResultBlockStyle}"/>
+                <Button Content="Next edge"
+                        Command="{Binding GoToMeasureNextEdgeCommand}"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Style="{StaticResource ButtonStyle}"/>
             </Grid>
         </StackPanel>
     </Grid>

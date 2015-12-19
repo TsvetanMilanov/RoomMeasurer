@@ -104,6 +104,8 @@
     <Compile Include="Controls\CanvasWithSelectableBackground.xaml.cs">
       <DependentUpon>CanvasWithSelectableBackground.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Edge.cs" />
+    <Compile Include="Models\Room.cs" />
     <Compile Include="Pages\CalculationResultPage.xaml.cs">
       <DependentUpon>CalculationResultPage.xaml</DependentUpon>
     </Compile>
@@ -112,6 +114,9 @@
     </Compile>
     <Compile Include="Pages\MeasureHeightPage.xaml.cs">
       <DependentUpon>MeasureHeightPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MeasureWithoutReferencePage.xaml.cs">
+      <DependentUpon>MeasureWithoutReferencePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MeasureWithReferencePage.xaml.cs">
       <DependentUpon>MeasureWithReferencePage.xaml</DependentUpon>
@@ -126,7 +131,9 @@
     <Compile Include="Utilities\PointsDistanceCalculator.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CalculateBaseViewModel.cs" />
+    <Compile Include="ViewModels\CalculationResultViewModel.cs" />
     <Compile Include="Controls\CanvasWithSelectableBackgroundViewModel.cs" />
+    <Compile Include="ViewModels\CanvasWithSelectableBackgroundViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MeasureHeightViewModel.cs" />
     <Compile Include="ViewModels\MeasureWithoutReferenceViewModel.cs" />
@@ -161,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CalculationResultPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MeasureWithoutReferencePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

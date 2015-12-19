@@ -32,7 +32,7 @@
 
         private void HandleGoToMeasureFromExistingImage()
         {
-            this.NavigationService.Navigate(typeof(MeasureFromExistingImagePage));
+            this.NavigationService.Navigate(typeof(MeasureHeightPage));
         }
 
         private double savedFocus;

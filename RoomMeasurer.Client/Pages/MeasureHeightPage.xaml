@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="RoomMeasurer.Client.Pages.MeasureFromExistingImagePage"
+    x:Class="RoomMeasurer.Client.Pages.MeasureHeightPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RoomMeasurer.Client.Pages"

@@ -12,19 +12,19 @@ namespace RoomMeasurer.Client.Pages
     
     using ViewModels;
 
-    public sealed partial class MeasureFromExistingImagePage : Page
+    public sealed partial class MeasureHeightPage : Page
     {
-        public MeasureFromExistingImagePage()
+        public MeasureHeightPage()
         {
             this.InitializeComponent();
-            this.ViewModel = new MeasureFromExistingImageViewModel();
+            this.ViewModel = new MeasureHeightViewModel();
         }
 
-        public MeasureFromExistingImageViewModel ViewModel
+        public MeasureHeightViewModel ViewModel
         {
             get
             {
-                return this.DataContext as MeasureFromExistingImageViewModel;
+                return this.DataContext as MeasureHeightViewModel;
             }
             private set
             {

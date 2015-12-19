@@ -109,6 +109,9 @@
     <Compile Include="Pages\CalculationResultPage.xaml.cs">
       <DependentUpon>CalculationResultPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\FinishMeasurementPage.xaml.cs">
+      <DependentUpon>FinishMeasurementPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,7 @@
     <Compile Include="ViewModels\CalculateBaseViewModel.cs" />
     <Compile Include="ViewModels\CalculationResultViewModel.cs" />
     <Compile Include="Controls\CanvasWithSelectableBackgroundViewModel.cs" />
+    <Compile Include="ViewModels\FinishMeasurementViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MeasureHeightViewModel.cs" />
     <Compile Include="ViewModels\MeasureWithoutReferenceViewModel.cs" />
@@ -175,6 +179,10 @@
     <Page Include="Pages\CalculationResultPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FinishMeasurementPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\MeasureWithoutReferencePage.xaml">
       <SubType>Designer</SubType>

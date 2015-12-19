@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
         <controls:CanvasWithSelectableBackground x:Name="canvasImageContainer"
-                                    Grid.Row="0" />
+                                    Grid.Row="0" MaxTaps="3"/>
 
         <StackPanel Grid.Row="1" Background="{StaticResource MenuColor}">
             <Grid>

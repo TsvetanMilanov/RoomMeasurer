@@ -36,6 +36,8 @@
 
         public ICommand Tap { get; set; }
 
+        public int MaxTaps { get; set; }
+
         private void ExecuteTappedCommand(TappedRoutedEventArgs args)
         {
             Canvas canvas = args.OriginalSource as Canvas;
@@ -49,7 +51,7 @@
                 .Where(c => c.GetType() == typeof(Ellipse))
                 .Count();
 
-            if (ellipsesCount >= 3)
+            if (ellipsesCount >= MaxTaps)
             {
                 return;
             }

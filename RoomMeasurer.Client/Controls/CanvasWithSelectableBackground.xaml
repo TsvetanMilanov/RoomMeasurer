@@ -7,18 +7,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:commands="using:RoomMeasurer.Client.AttachedProperties"
     mc:Ignorable="d"
-    d:DesignHeight="300"
+    d:DesignHeight="535"
     d:DesignWidth="400">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition Height="1*"  />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Grid.Row="0"
-                    Background="{StaticResource MenuColor}">
+
+        <Grid Grid.Row="1">
+            <Canvas Name="canvasImageContainer"
+                commands:CanvasCommands.Tap="{Binding Tap}"
+                Height="350"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"/>
+        </Grid>
+
+        <StackPanel Grid.Row="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom"
+                Background="{StaticResource MenuColor}">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -39,10 +48,5 @@
 
         </StackPanel>
 
-        <Canvas Name="canvasImageContainer"
-                commands:CanvasCommands.Tap="{Binding Tap}"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Grid.Row="1" />
     </Grid>
 </UserControl>

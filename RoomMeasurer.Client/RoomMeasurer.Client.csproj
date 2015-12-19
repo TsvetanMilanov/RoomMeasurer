@@ -126,7 +126,7 @@
     <Compile Include="Utilities\PointsDistanceCalculator.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CalculateBaseViewModel.cs" />
-    <Compile Include="ViewModels\CanvasWithSelectableBackgroundViewModel.cs" />
+    <Compile Include="Controls\CanvasWithSelectableBackgroundViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MeasureHeightViewModel.cs" />
     <Compile Include="ViewModels\MeasureWithoutReferenceViewModel.cs" />

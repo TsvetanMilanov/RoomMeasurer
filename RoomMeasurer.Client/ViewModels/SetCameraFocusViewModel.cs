@@ -10,10 +10,12 @@
     {
         private double calculatedFocus;
 
+
         public SetCameraFocusViewModel()
         {
             this.CalculateFocusCommand = new DelegateCommand(this.CalculateFocus);
             GetSavedFocus();
+            this.Instruction = "Load reference image, tap object bottom and top points, enter object distance, relative to camera and object real height and press calculate.";
         }
 
         public string RealSize { get; set; }
@@ -35,11 +37,36 @@
 
         public ICommand CalculateFocusCommand { get; private set; }
 
-        internal void CalculateFocus()
+        protected override void ExecuteCalculateCommand(Canvas canvas)
+        {
+            if (this.Distance == null)
+            {
+                this.Instruction = "Distance not set.";
+                return;
+            }
+
+            var tappedPointsTopOffsets = this.GetTappedPointsTopOffsets(canvas);
+
+            if (tappedPointsTopOffsets.Count != 2)
+            {
+                this.Instruction = "You must tap two reference points in the image - object base and object top.";
+                // TODO: Pop notification to add more points to the canvas.
+                return;
+            }
+
+            double firstPointOffset = tappedPointsTopOffsets[0];
+            double secondPointOffset = tappedPointsTopOffsets[1];
+
+            this.ProjectedSize = (firstPointOffset - secondPointOffset).ToString();
+            this.CalculateFocus();
+        }
+
+        private void CalculateFocus()
         {
             // TODO: error notifications for invalid input
-            if (this.RealSize == null || this.ProjectedSize == null || this.Distance == null)
+            if (this.RealSize == null)
             {
+                this.Instruction = "You must set the objects real size.";
                 return;
             }
 
@@ -54,17 +81,14 @@
 
             if (parsedRealSize == 0 || parsedProjectedSize == 0 || parsedDistance == 0)
             {
+                this.Instruction = "Real size and distance must be number values.";
                 return;
             }
 
             this.CalculatedFocus = Measurer.GetCameraFocalDistance(parsedDistance, parsedRealSize, parsedProjectedSize);
 
             this.Data.SaveFocusDistance(this.CalculatedFocus);
-        }
-
-        protected override void ExecuteCalculateCommand(Canvas param)
-        {
-            throw new NotImplementedException();
+            this.Instruction = "Calibration saved";
         }
 
         private async void GetSavedFocus()

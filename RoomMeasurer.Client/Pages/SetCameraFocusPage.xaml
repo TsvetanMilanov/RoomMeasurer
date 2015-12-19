@@ -13,15 +13,18 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <controls:CanvasWithSelectableBackground x:Name="canvasImageContainer"
                                     Grid.Row="0" MaxTaps="2"/>
-        
-        <Grid  VerticalAlignment="Bottom" Grid.Row="1"
+
+        <TextBlock Grid.Row="1" Text="{Binding Instruction, Mode=TwoWay}" Style="{StaticResource TextBlockStyle}"/>
+
+
+        <Grid  VerticalAlignment="Bottom" Grid.Row="2"
                Background="{StaticResource MenuColor}">
             <Grid.RowDefinitions>
-                <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
@@ -38,21 +41,18 @@
                        Style="{StaticResource TextBoxStyle}"
                          PlaceholderText="Size"
                      Text="{Binding RealSize, Mode=TwoWay}"/>
-            <TextBox Grid.Row="2" Grid.Column="0"
-                       Style="{StaticResource TextBoxStyle}"
-                         PlaceholderText="Projected size"
-                     Text="{Binding ProjectedSize, Mode=TwoWay}"/>
 
             <Button Grid.Row="0" Grid.Column="1"
-                    Content="Recalculate focus"
-                    Command="{Binding ExecuteCalculateCommand}"
+                    Content="Calibrate"
+                    CommandParameter="{Binding ElementName=canvasImageContainer, Path=Canvas}"
+                    Command="{Binding Calculate}"
                     Style="{StaticResource ButtonStyle}"/>
-            
-            <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"
+
+            <TextBlock Grid.Row="1" Grid.Column="1"
                        x:Name="calculatedFocus"
                        Text="{Binding CalculatedFocus, Mode=TwoWay}" 
                            Style="{StaticResource TextBlockStyle}"
-                       FontSize="35"/>
+                       FontSize="30"/>
         </Grid>
 
     </Grid>

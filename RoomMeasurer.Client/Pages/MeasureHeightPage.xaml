@@ -9,14 +9,17 @@
     mc:Ignorable="d">
     <Grid Background="{ThemeResource BackgroundColorBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"  />
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <controls:CanvasWithSelectableBackground x:Name="canvasImageContainer"
                                     Grid.Row="0" MaxTaps="3"/>
+        
+        <TextBlock Grid.Row="1" Text="{Binding Instruction, Mode=TwoWay}" Style="{StaticResource TextBlockStyle}"/>
 
-        <StackPanel Grid.Row="1" Background="{StaticResource MenuColor}">
+        <StackPanel Grid.Row="2" Background="{StaticResource MenuColor}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -26,26 +29,44 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                
-                <TextBox Grid.Row="0" Grid.Column="0" PlaceholderText="Reference object height"
+
+                <TextBox Grid.Row="0" Grid.Column="0" PlaceholderText="Reference height"
                      Text="{Binding ReferenceObjectHeight, Mode=TwoWay}"
                      InputScope="Number" 
                          Style="{StaticResource TextBoxStyle}"/>
-            
-                <Button Content="Calculate height"
+
+                <Button Content="Calculate"
                         CommandParameter="{Binding ElementName=canvasImageContainer, Path=Canvas}"
                         Command="{Binding Calculate}"
                         Grid.Row="1"
                         Grid.Column="0"
                         Style="{StaticResource ButtonStyle}"/>
-                
-                <TextBlock Name="tbHeightResult"
+
+
+                <TextBlock Grid.Row="0" Grid.Column="1"
+                        Text="H:"
+                               Style="{StaticResource TextBlockStyle}"
+                               HorizontalAlignment="Left"
+                           Padding="5 0 5 0 "/>
+                <TextBlock Grid.Row="0" Grid.Column="1"
+                        Name="tbHeightResult"
                            Text="{Binding CalculatedHeight}"
-                           HorizontalAlignment="Stretch"
-                           Grid.Row="0"
-                           Grid.Column="1"
-                           Grid.RowSpan="2"
-                           Style="{StaticResource ResultBlockStyle}"/>
+                           HorizontalAlignment="Right"
+                           Style="{StaticResource ResultBlockStyle}"
+                               Padding="5 0 5 0"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="1"
+                    Text="D:"
+                               Style="{StaticResource TextBlockStyle}"
+                           HorizontalAlignment="Left"
+                           Padding="5 0 5 0 "/>
+                <TextBlock Grid.Row="1" Grid.Column="1"
+                        Name="tbDistanceResult"
+                           Text="{Binding Distance}"
+                           HorizontalAlignment="Right"
+                           Style="{StaticResource ResultBlockStyle}"
+                               Padding="5 0 5 0"/>
+
             </Grid>
         </StackPanel>
     </Grid>

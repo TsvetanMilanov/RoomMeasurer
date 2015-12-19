@@ -1,5 +1,6 @@
 ﻿namespace RoomMeasurer.Client.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Input;
@@ -36,6 +37,10 @@
 
         protected IList<double> GetTappedPointsTopOffsets(Canvas canvas)
         {
+            if (canvas == null)
+            {
+                throw new NullReferenceException();
+            }
             // Order the top offsets descending because the first point needs to be the closest to the "ground".
             IList<double> tappedPointsTopOffsets = canvas.Children
                 .Where(p => p.GetType() == typeof(Ellipse))

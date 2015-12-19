@@ -7,6 +7,8 @@
 
     public class BaseViewModel : INotifyPropertyChanged
     {
+        private string instruction;
+
         public BaseViewModel()
         {
             this.NavigationService = new NavigationService();
@@ -15,7 +17,14 @@
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public string Instruction
+        {
+            get { return instruction; }
+            set { instruction = value; this.RaisePropertyChanged("Instruction"); }
+        }
+
         protected INavigationService NavigationService { get; private set; }
+
         protected Data Data { get; private set; }
 
         public void RaisePropertyChanged(string propertyName)

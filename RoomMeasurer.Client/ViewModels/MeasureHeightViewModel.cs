@@ -1,19 +1,14 @@
 ﻿namespace RoomMeasurer.Client.ViewModels
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows.Input;
-    using Windows.UI.Xaml.Controls;
-    using Windows.UI.Xaml.Shapes;
-
-    using Logic;
-    using Utilities;
-    using ViewModels;
     using System;
+    using Logic;
+    using Windows.UI.Xaml.Controls;
 
     public class MeasureHeightViewModel : CalculateBaseModel<Canvas>
     {
         private double calculatedHeight;
+
+        private double distance;
 
         public double CalculatedHeight
         {
@@ -21,6 +16,7 @@
             {
                 return this.calculatedHeight;
             }
+
             set
             {
                 this.calculatedHeight = value;
@@ -30,24 +26,32 @@
 
         public string ReferenceObjectHeight { get; set; }
 
+        public double Distance
+        {
+            get { return distance; }
+            set { distance = value; this.RaisePropertyChanged("Distance"); }
+        }
+
         protected override async void ExecuteCalculateCommand(Canvas canvas)
         {
-            if (string.IsNullOrEmpty(this.ReferenceObjectHeight))
+            var focusDistance = await this.Data.GetFoucsDistance();
+            if (focusDistance == -1)
             {
-                // TODO: Pop notification for the required reference height.
+                this.Instruction = "You must calibrate first.";
                 return;
             }
 
-            // Order the top offsets descending because the first point needs to be the closest to the "ground".
-            IList<double> tappedPointsTopOffsets = canvas.Children
-                .Where(p => p.GetType() == typeof(Ellipse))
-                .Select(p => Canvas.GetTop(p as Ellipse))
-                .OrderByDescending(p => p)
-                .ToList();
+            if (string.IsNullOrEmpty(this.ReferenceObjectHeight))
+            {
+                this.Instruction = "You must enter reference object height";
+                return;
+            }
+
+            var tappedPointsTopOffsets = this.GetTappedPointsTopOffsets(canvas);
 
             if (tappedPointsTopOffsets.Count < 3)
             {
-                // TODO: Pop notification to add more points to the canvas.
+                this.Instruction = "You must tap three points - objects base, reference top, real object top";
                 return;
             }
 
@@ -57,13 +61,20 @@
 
             double projectedReferenceHeight = firstPointOffset - secondPointOffset;
             double projectedEdgeHeight = firstPointOffset - thirdPointOffset;
-            double actualReferenceHeight = double.Parse(this.ReferenceObjectHeight);
+
+            double actualReferenceHeight = 0;
+            double.TryParse(this.ReferenceObjectHeight, out actualReferenceHeight);
+            if (actualReferenceHeight == 0)
+            {
+                this.Instruction = "Real reference height must be valid number";
+                return;
+            }
 
             this.CalculatedHeight = Measurer.GetRealHeight(projectedEdgeHeight, projectedReferenceHeight, actualReferenceHeight);
 
-            var focusDistance = await this.Data.GetFoucsDistance();
-            var distance = Measurer.GetEdgeDistances(new double[] { 155 }, focusDistance, projectedReferenceHeight, actualReferenceHeight);
-        }
+            this.Distance = Measurer.GetEdgeDistances(new double[] { projectedEdgeHeight }, focusDistance, projectedReferenceHeight, actualReferenceHeight)[0];
 
+            this.Instruction = "";
+        }
     }
 }

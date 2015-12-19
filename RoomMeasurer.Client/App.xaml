@@ -26,7 +26,7 @@
         <Style x:Key="ResultBlockStyle" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="FontSize" Value="35" />
+            <Setter Property="FontSize" Value="30" />
             <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>

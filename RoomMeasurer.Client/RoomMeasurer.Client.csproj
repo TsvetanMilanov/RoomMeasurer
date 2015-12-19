@@ -121,6 +121,9 @@
     <Compile Include="Pages\MeasureWithReferencePage.xaml.cs">
       <DependentUpon>MeasureWithReferencePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RoomDrawingPage.xaml.cs">
+      <DependentUpon>RoomDrawingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SetCameraFocusPage.xaml.cs">
       <DependentUpon>SetCameraFocusPage.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,8 @@
     <Compile Include="ViewModels\MeasureHeightViewModel.cs" />
     <Compile Include="ViewModels\MeasureWithoutReferenceViewModel.cs" />
     <Compile Include="ViewModels\MeasureWithReferenceViewModel.cs" />
+    <Compile Include="ViewModels\RoomDrawingViewModel.cs" />
+    <Compile Include="ViewModels\RoomGeometryViewModel.cs" />
     <Compile Include="ViewModels\SetCameraFocusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MeasureWithReferencePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RoomDrawingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

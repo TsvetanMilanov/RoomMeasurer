@@ -104,6 +104,9 @@
     <Compile Include="Controls\CanvasWithSelectableBackground.xaml.cs">
       <DependentUpon>CanvasWithSelectableBackground.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CalculationResultPage.xaml.cs">
+      <DependentUpon>CalculationResultPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\CanvasWithSelectableBackground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CalculationResultPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

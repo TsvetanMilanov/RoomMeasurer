@@ -2,22 +2,30 @@
 {
     using System.Collections.Generic;
     using Windows.UI.Xaml.Controls;
-
-    using Logic;
+    
+    using Controls;
     using Pages;
     using Models;
-    public class MeasureWithReferenceViewModel : CalculateBaseModel<Canvas>
+
+    public class MeasureWithReferenceViewModel : CalculateBaseModel<CanvasWithSelectableBackground>
     {
         public string ReferenceObjectHeight { get; set; }
 
-        protected override void ExecuteCalculateCommand(Canvas canvas)
+        protected override void ExecuteCalculateCommand(CanvasWithSelectableBackground control)
         {
+            if (this.CalculatedAngle == double.MinValue)
+            {
+                this.CalculatedAngle = control.CalculatedAngle;
+            }
+
             if (string.IsNullOrEmpty(this.ReferenceObjectHeight))
             {
                 // TODO: Pop notification for the required reference height.
                 return;
             }
-            
+
+            Canvas canvas = control.Canvas;
+
             IList<double> tappedPointsTopOffsets = this.GetTappedPointsTopOffsets(canvas);
 
             if (tappedPointsTopOffsets.Count < 3)
@@ -37,10 +45,8 @@
             // var distance = Measurer.GetEdgeDistances(new double[] { 155 }, focusDistance, projectedReferenceHeight, actualReferenceHeight);
 
             Room room = new Room(projectedReferenceHeight, actualReferenceHeight);
-
-            // TODO: Get the z index from accelerometer.
-            double zRotation = 0.5;
-            Edge edge = new Edge(projectedEdgeHeight, zRotation);
+            
+            Edge edge = new Edge(projectedEdgeHeight, this.CalculatedAngle);
             room.Edges.Add(edge);
 
             this.NavigationService.Navigate(typeof(CalculationResultPage), room);

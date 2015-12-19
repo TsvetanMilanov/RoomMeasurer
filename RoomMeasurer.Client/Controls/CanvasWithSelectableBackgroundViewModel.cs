@@ -20,14 +20,31 @@
     using Windows.UI.Xaml.Shapes;
 
     using Utilities;
+    using ViewModels;
+    using Windows.Devices.Sensors;
 
-    public class CanvasWithSelectableBackgroundViewModel
+    public class CanvasWithSelectableBackgroundViewModel : BaseViewModel
     {
+        private double calculatedAngle;
+
         public CanvasWithSelectableBackgroundViewModel()
         {
             this.BrowsePicturesCommand = new DelegateCommandWithParameter<Canvas>(this.ExecuteBrowseCommand);
             this.Tap = new DelegateCommandWithParameter<TappedRoutedEventArgs>(this.ExecuteTappedCommand);
             this.TakePhotoWithCameraCommand = new DelegateCommandWithParameter<Canvas>(this.ExecuteTakePhotoWithCameraCommand);
+        }
+
+        public double CalculatedAngle
+        {
+            get
+            {
+                return this.calculatedAngle;
+            }
+            set
+            {
+                this.calculatedAngle = value;
+                this.RaisePropertyChanged("CalculatedAngle");
+            }
         }
 
         public ICommand BrowsePicturesCommand { get; set; }
@@ -112,6 +129,8 @@
                     // TODO: Notification for error.
                 }
             }
+
+            this.SetAngle();
         }
 
         private async void ExecuteBrowseCommand(Canvas canvas)
@@ -132,6 +151,8 @@
             {
                 this.SetCanvasBackgroundToImage(file, canvas);
             }
+
+            this.SetAngle();
         }
 
         private Ellipse CreateEllipse(double width, double height, Color color)
@@ -176,6 +197,11 @@
             imageBrush.ImageSource = openedImage.Source;
             imageBrush.Stretch = Stretch.Uniform;
             canvas.Background = imageBrush;
+        }
+
+        private void SetAngle()
+        {
+            this.CalculatedAngle = AngleCalculator.CalculateAngle();
         }
     }
 }

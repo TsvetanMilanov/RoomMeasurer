@@ -3,10 +3,17 @@
     using System.Collections.Generic;
     using Windows.UI.Xaml.Controls;
 
-    public class MeasureWithoutReferenceViewModel : CalculateBaseModel<Canvas>
+    using Models;
+    using Pages;
+    using Controls;
+    public class MeasureWithoutReferenceViewModel : CalculateBaseModel<CanvasWithSelectableBackground>
     {
-        protected override async void ExecuteCalculateCommand(Canvas canvas)
+        public Room Room { get; set; }
+
+        protected override void ExecuteCalculateCommand(CanvasWithSelectableBackground control)
         {
+            Canvas canvas = control.Canvas;
+
             IList<double> tappedPointsTopOffsets = this.GetTappedPointsTopOffsets(canvas);
 
             if (tappedPointsTopOffsets.Count < 2)
@@ -15,10 +22,17 @@
                 return;
             }
 
-            double projectedEdgeHeight = this.PointsDistanceCalculator.CalculateEdgePointsDistance(tappedPointsTopOffsets);
+            if (this.CalculatedAngle == double.MinValue)
+            {
+                this.CalculatedAngle = control.CalculatedAngle;
+            }
 
-            // TODO: Override on navigated to and update the room model.
-            var focusDistance = await this.Data.GetFoucsDistance();
+            double projectedEdgeHeight = this.PointsDistanceCalculator.CalculateEdgePointsDistance(tappedPointsTopOffsets);
+            
+            Edge edge = new Edge(projectedEdgeHeight, this.CalculatedAngle);
+            this.Room.Edges.Add(edge);
+
+            this.NavigationService.Navigate(typeof(CalculationResultPage), this.Room);
         }
     }
 }

@@ -17,25 +17,48 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
+
+                <TextBlock Text="Calculated edge height:"
+                           TextAlignment="Center"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"/>
 
                 <TextBlock Name="tbHeightResult"
                            Text="{Binding CalculatedHeight}"
                            HorizontalAlignment="Center"
-                           Grid.Row="0"
+                           Grid.Row="1"
                            Grid.Column="0"
                            Grid.ColumnSpan="2"
                            Style="{StaticResource ResultBlockStyle}"/>
-                
+
+                <TextBlock Text="Angle:"
+                           TextAlignment="Center"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"/>
+
+                <TextBlock Name="tbAngle"
+                           Text="{Binding Edge.ZRotation}"
+                           HorizontalAlignment="Center"
+                           Grid.Row="3"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Style="{StaticResource ResultBlockStyle}"/>
+
                 <Button Content="Finish"
                         Command="{Binding Finish}"
-                        Grid.Row="1"
+                        Grid.Row="4"
                         Grid.Column="0"
                         Style="{StaticResource ButtonStyle}"/>
 
                 <Button Content="Next edge"
                         Command="{Binding GoToMeasureNextEdgeCommand}"
-                        Grid.Row="1"
+                        Grid.Row="5"
                         Grid.Column="1"
                         Style="{StaticResource ButtonStyle}"/>
             </Grid>

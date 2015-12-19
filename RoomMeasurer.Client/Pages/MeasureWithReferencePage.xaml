@@ -15,7 +15,8 @@
         </Grid.RowDefinitions>
 
         <controls:CanvasWithSelectableBackground x:Name="canvasImageContainer"
-                                    Grid.Row="0" />
+                                                 MaxTaps="3"
+                                                 Grid.Row="0" />
 
         <StackPanel Grid.Row="1" Background="{StaticResource MenuColor}">
             <Grid>
@@ -25,17 +26,38 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="0" Grid.Column="0" PlaceholderText="Reference object height"
-                        Text="{Binding ReferenceObjectHeight, Mode=TwoWay}"
-                        InputScope="Number" 
+                <TextBox Grid.Row="0" 
+                         Grid.Column="0" 
+                         Grid.ColumnSpan="2"
+                         PlaceholderText="Reference object height"
+                         Text="{Binding ReferenceObjectHeight, Mode=TwoWay}"
+                         InputScope="Number" 
+                         Style="{StaticResource TextBoxStyle}"/>
+                
+                <TextBox Name="tbAngle"
+                         Grid.Row="1" 
+                         Grid.Column="0" 
+                         Grid.ColumnSpan="2"
+                         PlaceholderText="Angle"
+                         Text="{Binding CalculatedAngle, Mode=TwoWay}"
+                         InputScope="Number" 
                          Style="{StaticResource TextBoxStyle}"/>
 
                 <Button Content="Calculate"
-                        CommandParameter="{Binding ElementName=canvasImageContainer, Path=Canvas}"
+                        CommandParameter="{Binding ElementName=canvasImageContainer}"
                         Command="{Binding Calculate}"
-                        Grid.Row="0"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Style="{StaticResource ButtonStyle}"/>
+
+                <Button Content="Save angle"
+                        CommandParameter="{Binding ElementName=tbAngle, Path=Text}"
+                        Command="{Binding SaveAngle}"
+                        Grid.Row="3"
                         Grid.Column="1"
                         Style="{StaticResource ButtonStyle}"/>
             </Grid>

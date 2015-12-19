@@ -1,6 +1,5 @@
 ﻿namespace RoomMeasurer.Client.ViewModels
 {
-    using System;
     using System.Linq;
     using System.Windows.Input;
 
@@ -12,6 +11,7 @@
     public class CalculationResultViewModel : BaseViewModel
     {
         private double calculatedHeight;
+        private Edge edge;
 
         public CalculationResultViewModel()
         {
@@ -32,14 +32,28 @@
         }
 
         public Room Room { get; internal set; }
-        
+
+        public Edge Edge
+        {
+            get
+            {
+                return this.edge;
+            }
+            set
+            {
+                this.edge = value;
+                this.RaisePropertyChanged("Edge");
+            }
+        }
+
+
         public ICommand GoToMeasureNextEdgeCommand { get; set; }
-        
+
         public void CalculateHeight(Room room)
         {
-            Edge lastEdge = room.Edges.Last();
+            this.Edge = room.Edges.Last();
 
-            this.CalculatedHeight = Measurer.GetRealHeight(lastEdge.ProjectedHeight, room.ProjectedReferenceHeight, room.ActualReferenceHeight);
+            this.CalculatedHeight = Measurer.GetRealHeight(this.Edge.ProjectedHeight, room.ProjectedReferenceHeight, room.ActualReferenceHeight);
         }
 
         private void HandleGoToMeasureNextEdge()

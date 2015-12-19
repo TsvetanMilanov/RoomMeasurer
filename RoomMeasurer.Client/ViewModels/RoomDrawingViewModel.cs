@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Shapes;
-
-namespace RoomMeasurer.Client.ViewModels
+﻿namespace RoomMeasurer.Client.ViewModels
 {
+    using System;
+    using Windows.Foundation;
+    using Windows.UI.Xaml.Media;
+
     public class RoomDrawingViewModel : BaseViewModel
     {
         private PointCollection roomCorners;
@@ -43,29 +37,17 @@ namespace RoomMeasurer.Client.ViewModels
             }
         }
 
-
         internal void CalculateRoomCorners(RoomGeometryViewModel room)
         {
-            var roomCorners = new PointCollection();
-            for (int i = 0; i < room.Distances.Count; i++)
+            PointCollection roomCorners = new PointCollection();
+            for (int i = 0; i < room.Yaws.Count; i++)
             {
-                var line = new Line();
+                double angle = room.Yaws[i] * Math.PI / 180;
+                double distance = room.Distances[i];
+                double x = Math.Sin(angle) * distance;
+                double y = Math.Cos(angle) * distance;
 
-                line.X1 = 0;
-                line.Y1 = 0;
-
-                line.X2 = 0;
-                line.Y2 = room.Distances[i];
-
-                line.RenderTransformOrigin = new Point(0,0);
-
-                var rotation = new RotateTransform();
-                rotation.CenterX = 0;
-                rotation.CenterY = 0;
-                rotation.Angle = room.Yaws[i];
-                line.RenderTransform = rotation;
-
-                roomCorners.Add(new Point(line.X2, line.Y2));
+                roomCorners.Add(new Point(x, y));
             }
 
             this.RoomCorners = roomCorners;

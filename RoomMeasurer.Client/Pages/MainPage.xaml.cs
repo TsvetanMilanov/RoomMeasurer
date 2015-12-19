@@ -41,5 +41,10 @@ namespace RoomMeasurer.Client.Pages
                 this.DataContext = value;
             }
         }
+
+        private void test_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(RoomDrawingPage));
+        }
     }
 }

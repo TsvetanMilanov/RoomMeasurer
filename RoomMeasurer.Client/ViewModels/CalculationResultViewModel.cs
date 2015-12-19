@@ -1,5 +1,6 @@
 ﻿namespace RoomMeasurer.Client.ViewModels
 {
+    using System;
     using System.Linq;
     using System.Windows.Input;
 
@@ -16,6 +17,7 @@
         public CalculationResultViewModel()
         {
             this.GoToMeasureNextEdgeCommand = new DelegateCommand(this.HandleGoToMeasureNextEdge);
+            this.Finish = new DelegateCommand(this.HandleGoToFinishPage);
         }
 
         public double CalculatedHeight
@@ -45,9 +47,10 @@
                 this.RaisePropertyChanged("Edge");
             }
         }
-
-
+        
         public ICommand GoToMeasureNextEdgeCommand { get; set; }
+
+        public ICommand Finish { get; set; }
 
         public void CalculateHeight(Room room)
         {
@@ -59,6 +62,11 @@
         private void HandleGoToMeasureNextEdge()
         {
             this.NavigationService.Navigate(typeof(MeasureWithoutReferencePage), this.Room);
+        }
+        
+        private void HandleGoToFinishPage()
+        {
+            this.NavigationService.Navigate(typeof(FinishMeasurementPage), this.Room);
         }
     }
 }

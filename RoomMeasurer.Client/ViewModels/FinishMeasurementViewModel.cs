@@ -7,9 +7,10 @@
     using DB;
     using Logic;
     using Models;
+    using Pages;
     using Utilities;
 
-    public class FinishMeasurementViewModel
+    public class FinishMeasurementViewModel : BaseViewModel
     {
         public FinishMeasurementViewModel()
         {
@@ -34,6 +35,8 @@
                 this.Room.ActualReferenceHeight);
 
             List<double> orientations = this.Room.Edges.Select(e => e.ZRotation).ToList();
+
+            this.NavigationService.Navigate(typeof(RoomDrawingPage), new RoomGeometryViewModel(distances, orientations));
         }
     }
 }

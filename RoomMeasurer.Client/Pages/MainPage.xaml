@@ -25,6 +25,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Button Name="startMeasuringRoomButton"
                     Content="Start measuring room"
@@ -41,6 +42,11 @@
                     Style="{StaticResource ButtonStyle}"
                     Command="{Binding GoToSetCameraFocusCommand}"
                     Grid.Row="2"/>
+            <Button Name="test"
+                    Content="Calibrate camera"
+                    Style="{StaticResource ButtonStyle}"
+                    Click="test_Click"
+                    Grid.Row="3"/>
         </Grid>
     </Grid>
 </Page>

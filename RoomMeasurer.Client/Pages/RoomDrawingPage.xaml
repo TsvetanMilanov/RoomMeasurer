@@ -9,7 +9,10 @@
 
     <Grid Background="{ThemeResource BackgroundColorBrush}">
         <Canvas>
-            <Polygon Points="{Binding RoomCorners}"></Polygon>
+            <Polygon Canvas.Left="100"
+                     Canvas.Top="100"
+                     Fill="AliceBlue"
+                     Points="{Binding RoomCorners}" />
         </Canvas>
     </Grid>
 </Page>

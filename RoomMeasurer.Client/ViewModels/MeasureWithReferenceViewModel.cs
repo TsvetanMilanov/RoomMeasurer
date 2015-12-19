@@ -40,10 +40,6 @@
             double projectedEdgeHeight = distances[1];
             double actualReferenceHeight = double.Parse(this.ReferenceObjectHeight);
             
-            // TODO: Move in final calculations page.
-            // var focusDistance = await this.Data.GetFoucsDistance();
-            // var distance = Measurer.GetEdgeDistances(new double[] { 155 }, focusDistance, projectedReferenceHeight, actualReferenceHeight);
-
             Room room = new Room(projectedReferenceHeight, actualReferenceHeight);
             
             Edge edge = new Edge(projectedEdgeHeight, this.CalculatedAngle);

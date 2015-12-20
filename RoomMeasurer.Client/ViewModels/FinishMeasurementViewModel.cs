@@ -1,10 +1,7 @@
 ﻿namespace RoomMeasurer.Client.ViewModels
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.InteropServices;
-    using System.Threading.Tasks;
     using System.Windows.Input;
     using Windows.Devices.Geolocation;
     using Windows.Storage.Streams;
@@ -14,7 +11,7 @@
     using Newtonsoft.Json;
 
     using DB;
-    using Logic;
+    using DB.Models;
     using Models;
     using Pages;
     using Web.RequestModels;
@@ -63,7 +60,15 @@
 
             Data data = new Data();
 
-            string token = (await data.GetCurrentUser()).Token;
+            UserDatabaseModel currentUser = await data.GetCurrentUser();
+
+            if (currentUser == null || string.IsNullOrEmpty(currentUser.Token))
+            {
+                MessageDialogNotifier.Notify("You must be logged in to get all rooms.");
+                return;
+            }
+
+            string token = currentUser.Token;
 
             Requester requester = new Requester();
             string serverResult = string.Empty;

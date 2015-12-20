@@ -7,6 +7,11 @@
         public static double CalculateAngle()
         {
             Compass compass = Compass.GetDefault();
+
+            if (compass == null)
+            {
+                return 0;
+            }
             
             double angle = compass.GetCurrentReading().HeadingMagneticNorth;
 

@@ -118,7 +118,7 @@
     <Compile Include="Pages\ShowAllRoomsPage.xaml.cs">
       <DependentUpon>ShowAllRoomsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Notifications\MessageDialogNotificator.cs" />
+    <Compile Include="Utilities\Notifications\MessageDialogNotifier.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RoomDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\ShowAllRoomsPageViewModel.cs" />

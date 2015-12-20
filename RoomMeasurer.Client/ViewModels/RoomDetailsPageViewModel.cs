@@ -2,13 +2,22 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows.Input;
 
+    using Pages;
     using RoomMeasurer.Client.Models;
+    using Utilities;
+
     public class RoomDetailsPageViewModel : BaseViewModel
     {
         private string edges;
         private Room room;
-        
+
+        public RoomDetailsPageViewModel()
+        {
+            this.Draw = new DelegateCommand(this.ExecuteDrawCommand);
+        }
+
         public string Edges
         {
             get
@@ -52,6 +61,15 @@
 
                 this.RaisePropertyChanged("Room");
             }
+        }
+
+        public ICommand Draw { get; set; }
+
+        private async void ExecuteDrawCommand()
+        {
+            RoomGeometryViewModel geometryModel = await RoomGeometryViewModel.CreateFromRoom(this.room);
+
+            this.NavigationService.Navigate(typeof(RoomDrawingPage), geometryModel);
         }
     }
 }

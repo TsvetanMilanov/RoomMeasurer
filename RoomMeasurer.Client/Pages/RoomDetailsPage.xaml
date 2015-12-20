@@ -21,6 +21,7 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Room Details"
@@ -74,6 +75,13 @@
                            TextAlignment="Center"
                            Grid.Row="5"
                            Grid.Column="1"/>
+                
+                <Button Content="Draw"
+                        Command="{Binding Draw}"
+                        Grid.Row="6"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource ButtonStyle}"/>
             </Grid>
         </StackPanel>
     </Grid>

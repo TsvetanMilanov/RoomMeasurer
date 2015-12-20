@@ -16,6 +16,7 @@
     using Utilities;
     using Web.ResponseModels;
     using Windows.UI.Xaml.Input;
+    using Utilities.Notifications;
     public class ShowAllRoomsPageViewModel : BaseViewModel
     {
         private ObservableCollection<Room> allRooms;
@@ -69,10 +70,25 @@
             Data data = new Data();
 
             UserDatabaseModel currentUser = await Data.GetCurrentUser();
+            string result = string.Empty;
 
-            string result = await requester.GetJsonAsync("/api/roomGeometry", currentUser.Token);
+            try
+            {
+                result = await requester.GetJsonAsync("/api/roomGeometry", currentUser.Token);
+            }
+            catch (Exception)
+            {
+                MessageDialogNotifier.Notify("You must be logged in to get all rooms.");
+                return;
+            }
 
             IEnumerable<RoomResponseModel> allRoomsResponseModels = JsonConvert.DeserializeObject<IEnumerable<RoomResponseModel>>(result);
+
+            if (allRoomsResponseModels == null || allRoomsResponseModels.Count() <= 0)
+            {
+                MessageDialogNotifier.Notify("You must be logged in to get all rooms.");
+                return;
+            }
 
             if (allRoomsResponseModels != null)
             {

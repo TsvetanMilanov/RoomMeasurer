@@ -3,7 +3,7 @@
     using System;
     using Windows.UI.Popups;
 
-    public static class MessageDialogNotificator
+    public static class MessageDialogNotifier
     {
         public async static void Notify(string message)
         {

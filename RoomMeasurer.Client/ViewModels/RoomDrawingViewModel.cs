@@ -68,7 +68,7 @@
 
         private void ExecuteShowWallSizesCommand()
         {
-            MessageDialogNotificator.Notify(string.Format("Walls sizes:\n{0}", string.Join(",\n", this.Room.ActualWallsSizes)));
+            MessageDialogNotifier.Notify(string.Format("Walls sizes:\n{0}", string.Join(",\n", this.Room.ActualWallsSizes)));
         }
 
         private void ExecuteScaleCommand(ManipulationDeltaRoutedEventArgs obj)

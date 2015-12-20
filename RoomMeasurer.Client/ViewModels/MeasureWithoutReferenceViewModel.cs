@@ -20,7 +20,7 @@
 
             if (tappedPointsTopOffsets.Count < 2)
             {
-                MessageDialogNotificator.Notify("Please add the reference points by tapping on the image.");
+                MessageDialogNotifier.Notify("Please add the reference points by tapping on the image.");
                 return;
             }
 

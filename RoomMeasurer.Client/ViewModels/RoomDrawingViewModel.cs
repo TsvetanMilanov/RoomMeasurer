@@ -20,11 +20,14 @@
             this.roomCorners = new PointCollection();
             this.Translate = new DelegateCommandWithParameter<ManipulationDeltaRoutedEventArgs>(this.ExecuteTranslateCommand);
             this.DisableInertia = new DelegateCommandWithParameter<ManipulationInertiaStartingRoutedEventArgs>(this.ExecuteDisableInertiaCommand);
+            this.Scale = new DelegateCommandWithParameter<ManipulationDeltaRoutedEventArgs>(this.ExecuteScaleCommand);
         }
 
         public ICommand Translate { get; set; }
 
         public ICommand DisableInertia { get; set; }
+
+        public ICommand Scale { get; set; }
 
         public PointCollection RoomCorners
         {
@@ -48,6 +51,20 @@
 
                 this.RaisePropertyChanged("RoomCorners");
             }
+        }
+
+        private void ExecuteScaleCommand(ManipulationDeltaRoutedEventArgs obj)
+        {
+            // TODO: Check how to scale Polygon
+            Shape control = obj.OriginalSource as Shape;
+
+            if (control == null)
+            {
+                return;
+            }
+
+            control.Width *= obj.Delta.Scale;
+            control.Height *= obj.Delta.Scale;
         }
 
         private void ExecuteDisableInertiaCommand(ManipulationInertiaStartingRoutedEventArgs obj)

@@ -6,7 +6,7 @@
     using Windows.UI.Xaml.Input;
     using Windows.UI.Xaml.Shapes;
 
-    public class PolygonCommands
+    public class TranslatePolygonCommand
     {
         public static ICommand GetTranslate(DependencyObject obj)
         {

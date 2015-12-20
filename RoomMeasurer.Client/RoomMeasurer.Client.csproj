@@ -99,7 +99,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AttachedProperties\CanvasCommands.cs" />
-    <Compile Include="AttachedProperties\PolygonCommands.cs" />
+    <Compile Include="AttachedProperties\ScaleShapeCommand.cs" />
+    <Compile Include="AttachedProperties\TranslatePolygonCommand.cs" />
     <Compile Include="AttachedProperties\DisableInertiaCommand.cs" />
     <Compile Include="Contracts\INavigationService.cs" />
     <Compile Include="DB\Data.cs" />

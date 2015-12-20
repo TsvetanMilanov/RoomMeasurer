@@ -9,9 +9,10 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource BackgroundColorBrush}">
-        <Canvas>
-            <Polygon commands:PolygonCommands.Translate="{Binding Translate}"
+        <Canvas Background="Transparent">
+            <Polygon commands:TranslatePolygonCommand.Translate="{Binding Translate}"
                      commands:DisableInertiaCommand.DisableInertia="{Binding DisableInertia}"
+                     commands:ScaleShapeCommand.Scale="{Binding Scale}"
                      Canvas.Left="100"
                      Canvas.Top="100"
                      Fill="AliceBlue"

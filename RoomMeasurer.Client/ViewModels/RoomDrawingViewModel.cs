@@ -10,7 +10,7 @@
 
     using Utilities;
     using Pages;
-
+    using Utilities.Notifications;
     public class RoomDrawingViewModel : BaseViewModel
     {
         private PointCollection roomCorners;
@@ -22,6 +22,7 @@
             this.DisableInertia = new DelegateCommandWithParameter<ManipulationInertiaStartingRoutedEventArgs>(this.ExecuteDisableInertiaCommand);
             this.Scale = new DelegateCommandWithParameter<ManipulationDeltaRoutedEventArgs>(this.ExecuteScaleCommand);
             this.BackToMainMenu = new DelegateCommand(this.ExecuteBackToMainMenuCommand);
+            this.ShowWallSizes = new DelegateCommand(this.ExecuteShowWallSizesCommand);
         }
 
         public ICommand Translate { get; set; }
@@ -31,6 +32,10 @@
         public ICommand Scale { get; set; }
 
         public ICommand BackToMainMenu { get; set; }
+
+        public ICommand ShowWallSizes { get; set; }
+
+        public RoomGeometryViewModel Room { get; set; }
 
         public PointCollection RoomCorners
         {
@@ -59,6 +64,11 @@
         private void ExecuteBackToMainMenuCommand()
         {
             this.NavigationService.Navigate(typeof(MainPage));
+        }
+
+        private void ExecuteShowWallSizesCommand()
+        {
+            MessageDialogNotificator.Notify(string.Format("Walls sizes:\n{0}", string.Join(",\n", this.Room.ActualWallsSizes)));
         }
 
         private void ExecuteScaleCommand(ManipulationDeltaRoutedEventArgs obj)

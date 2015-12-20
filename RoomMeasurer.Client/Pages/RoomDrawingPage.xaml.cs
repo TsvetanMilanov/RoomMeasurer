@@ -45,6 +45,7 @@ namespace RoomMeasurer.Client.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var room = e.Parameter as RoomGeometryViewModel;
+            this.ViewModel.Room = room;
             this.ViewModel.CalculateRoomCorners(room);
             base.OnNavigatedTo(e);
         }

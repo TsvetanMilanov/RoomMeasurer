@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
         </Grid.RowDefinitions>
 
         <Canvas Background="Transparent"
@@ -24,10 +25,16 @@
                      Fill="AliceBlue"
                      Points="{Binding RoomCorners}" />
         </Canvas>
+        
+        <Button Content="Show wall sizes"
+                Name="showWallSizesButton"
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                Command="{Binding ShowWallSizes}" />
 
         <Button Content="Main menu"
                 Name="backToMainPageButton"
-                Grid.Row="1"
+                Grid.Row="2"
                 HorizontalAlignment="Center"
                 Command="{Binding BackToMainMenu}" />
     </Grid>

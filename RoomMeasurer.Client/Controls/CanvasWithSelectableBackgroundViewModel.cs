@@ -107,7 +107,7 @@
             }
             catch (UnauthorizedAccessException)
             {
-                MessageDialogNotificator.Notify("You are not authorized to save files in this directory. Try different one.");
+                MessageDialogNotifier.Notify("You are not authorized to save files in this directory. Try different one.");
                 return;
             }
 
@@ -128,7 +128,7 @@
                 }
                 else
                 {
-                    MessageDialogNotificator.Notify("The photo cannot be saved. Please giv this application the required permissions..");
+                    MessageDialogNotifier.Notify("The photo cannot be saved. Please giv this application the required permissions..");
                 }
             }
 

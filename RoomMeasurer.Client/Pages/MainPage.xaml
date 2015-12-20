@@ -24,6 +24,7 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Button Name="startMeasuringRoomButton"
                     Content="Start measuring room"
@@ -40,11 +41,16 @@
                     Style="{StaticResource ButtonStyle}"
                     Command="{Binding GoToSetCameraFocusCommand}"
                     Grid.Row="2"/>
+            <Button Name="showAllRoomsButton"
+                    Content="Show all rooms"
+                    Style="{StaticResource ButtonStyle}"
+                    Command="{Binding GoToShowAllRoomsPage}"
+                    Grid.Row="3"/>
             <Button Name="loginButton"
                     Content="Login"
                     Style="{StaticResource ButtonStyle}"
                     Command="{Binding GoToLoginPage}"
-                    Grid.Row="3"/>
+                    Grid.Row="4"/>
         </Grid>
     </Grid>
 </Page>

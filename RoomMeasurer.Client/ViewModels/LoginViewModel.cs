@@ -48,7 +48,7 @@
             }
             catch (Exception)
             {
-                MessageDialogNotificator.Notify("There was an error on the server. Please contact the server administrators.");
+                MessageDialogNotifier.Notify("There was an error on the server. Please contact the server administrators.");
             }
 
             UserResponseModel user = JsonConvert.DeserializeObject<UserResponseModel>(response);
@@ -56,7 +56,7 @@
             if (string.IsNullOrEmpty(user.UserName) || 
                 string.IsNullOrEmpty(user.Token))
             {
-                MessageDialogNotificator.Notify("Invalid username or password.");
+                MessageDialogNotifier.Notify("Invalid username or password.");
             }
             else
             {
@@ -76,7 +76,7 @@
 
                 UserDatabaseModel currentUser = await data.GetCurrentUser();
 
-                MessageDialogNotificator.Notify(string.Format("Hello {0} {1}!\nYou are now logged in.", currentUser.FirstName, currentUser.LastName));
+                MessageDialogNotifier.Notify(string.Format("Hello {0} {1}!\nYou are now logged in.", currentUser.FirstName, currentUser.LastName));
             }
         }
     }

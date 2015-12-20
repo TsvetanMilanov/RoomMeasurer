@@ -21,7 +21,7 @@
 
             if (string.IsNullOrEmpty(this.ReferenceObjectHeight))
             {
-                MessageDialogNotificator.Notify("Please fill the reference's actual height field.");
+                MessageDialogNotifier.Notify("Please fill the reference's actual height field.");
                 return;
             }
 
@@ -31,7 +31,7 @@
 
             if (tappedPointsTopOffsets.Count < 3)
             {
-                MessageDialogNotificator.Notify("Please add the three reference points.");
+                MessageDialogNotifier.Notify("Please add the three reference points.");
                 return;
             }
 

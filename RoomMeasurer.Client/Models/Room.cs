@@ -11,7 +11,7 @@
             this.Edges = new List<Edge>();
         }
 
-        public ICollection<Edge> Edges { get; private set; }
+        public ICollection<Edge> Edges { get; set; }
 
         public double ProjectedReferenceHeight { get; set; }
 

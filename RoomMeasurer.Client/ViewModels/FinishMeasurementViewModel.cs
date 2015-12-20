@@ -54,7 +54,7 @@
 
             RoomRequestModel roomDatabaseModel = new RoomRequestModel
             {
-                Geometry = await this.GenerateRoomGeometryViewModel(),
+                Geometry = await RoomGeometryViewModel.CreateFromRoom(this.Room),
                 Room = this.Room
             };
 
@@ -74,46 +74,25 @@
             }
             catch (COMException)
             {
-                MessageDialogNotificator.Notify("There was an error on the server. Please contact the server administrators..");
+                MessageDialogNotifier.Notify("There was an error on the server. Please contact the server administrators..");
             }
 
             RoomRequestModel result = JsonConvert.DeserializeObject<RoomRequestModel>(serverResult);
 
             if (result == null)
             {
-                MessageDialogNotificator.Notify("The room information was not valid or you are not authenticated.");
+                MessageDialogNotifier.Notify("The room information was not valid or you are not authenticated.");
             }
             else
             {
-                MessageDialogNotificator.Notify("The room information was successfully saved in the database.");
+                MessageDialogNotifier.Notify("The room information was successfully saved in the database.");
             }
         }
 
         private async void ExecuteDrawRoomCommand()
         {
-            RoomGeometryViewModel roomGeometry = await GenerateRoomGeometryViewModel();
+            RoomGeometryViewModel roomGeometry = await RoomGeometryViewModel.CreateFromRoom(this.Room);
             this.NavigationService.Navigate(typeof(RoomDrawingPage), roomGeometry);
-        }
-
-        private async Task<RoomGeometryViewModel> GenerateRoomGeometryViewModel()
-        {
-            Data data = new Data();
-
-            double[] projectedEdgeHeights = this.Room.Edges.Select(e => e.ProjectedHeight).ToArray();
-            double focalDistance = await data.GetFoucsDistance();
-
-            List<double> distances = Measurer.GetEdgeDistances(
-                projectedEdgeHeights,
-                focalDistance,
-                this.Room.ProjectedReferenceHeight,
-                this.Room.ActualReferenceHeight);
-
-            List<double> orientations = this.Room.Edges.Select(e => e.ZRotation).ToList();
-
-            List<double> actualWallSizes = Measurer.GetActualWallSizes(distances, orientations);
-
-            RoomGeometryViewModel roomGeometry = new RoomGeometryViewModel(distances, orientations, actualWallSizes);
-            return roomGeometry;
         }
     }
 }

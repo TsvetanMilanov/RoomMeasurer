@@ -13,6 +13,7 @@
             this.GoToSetCameraFocusCommand = new DelegateCommand(this.ExecuteGoToSetCameraFocusCommand);
             this.GoToStartMeasuringRoomCommand = new DelegateCommand(this.ExecuteGoToStartMeasuringRoomCommand);
             this.GoToLoginPage = new DelegateCommand(this.ExecuteGoToLoginPageCommand);
+            this.GoToShowAllRoomsPage = new DelegateCommand(this.ExecuteGoToShowAllRoomsCommand);
         }
 
         public ICommand GoToMeasureFromExistingImageCommand { get; set; }
@@ -22,6 +23,13 @@
         public ICommand GoToStartMeasuringRoomCommand { get; set; }
 
         public ICommand GoToLoginPage { get; set; }
+
+        public ICommand GoToShowAllRoomsPage { get; set; }
+
+        private void ExecuteGoToShowAllRoomsCommand()
+        {
+            this.NavigationService.Navigate(typeof(ShowAllRoomsPage));
+        }
 
         private void ExecuteGoToLoginPageCommand()
         {

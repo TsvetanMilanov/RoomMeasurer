@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="RoomMeasurer.Client.Pages.ShowAllRoomsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RoomMeasurer.Client.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:commands="using:RoomMeasurer.Client.AttachedProperties"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ItemsPanelTemplate x:Key="allRoomsPanel">
+            <StackPanel HorizontalAlignment="Stretch" />
+        </ItemsPanelTemplate>
+        <DataTemplate x:Key="allRoomsItemTemplate">
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Longitude:"
+                           Grid.Column="0"
+                           Grid.Row="0"
+                           TextAlignment="Center" />
+                <TextBlock Text="Latitude:"
+                           Grid.Column="1"
+                           Grid.Row="0"
+                           TextAlignment="Center" />
+
+                <TextBlock Text="{Binding Longitude}"
+                           Grid.Column="0"
+                           Grid.Row="1"
+                           TextAlignment="Center" />
+                <TextBlock Text="{Binding Latitude}"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           TextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Background="{ThemeResource BackgroundColorBrush}">
+            <StackPanel Background="{StaticResource MenuColor}">
+                <TextBlock Text="All rooms:"
+                           TextAlignment="Center"/>
+
+                <ListBox ItemsSource="{Binding AllRooms, Mode=TwoWay}"
+                         ItemTemplate="{StaticResource allRoomsItemTemplate}"
+                         ItemsPanel="{StaticResource allRoomsPanel}"
+                         Background="Gray"
+                         commands:ListBoxSelectedCommand.SelectedItem ="{Binding SelectedItem}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

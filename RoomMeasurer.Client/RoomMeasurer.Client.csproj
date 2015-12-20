@@ -99,6 +99,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AttachedProperties\CanvasCommands.cs" />
+    <Compile Include="AttachedProperties\ListBoxSelectedCommand.cs" />
     <Compile Include="AttachedProperties\ScaleShapeCommand.cs" />
     <Compile Include="AttachedProperties\TranslatePolygonCommand.cs" />
     <Compile Include="AttachedProperties\DisableInertiaCommand.cs" />
@@ -111,8 +112,16 @@
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RoomDetailsPage.xaml.cs">
+      <DependentUpon>RoomDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ShowAllRoomsPage.xaml.cs">
+      <DependentUpon>ShowAllRoomsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\Notifications\MessageDialogNotificator.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\RoomDetailsPageViewModel.cs" />
+    <Compile Include="ViewModels\ShowAllRoomsPageViewModel.cs" />
     <Compile Include="Web\RequestModels\RoomRequestModel.cs" />
     <Compile Include="Models\Edge.cs" />
     <Compile Include="Models\Room.cs" />
@@ -160,6 +169,7 @@
     <Compile Include="ViewModels\RoomGeometryViewModel.cs" />
     <Compile Include="ViewModels\SetCameraFocusViewModel.cs" />
     <Compile Include="Web\RequestModels\UserRequestModel.cs" />
+    <Compile Include="Web\ResponseModels\RoomResponseModel.cs" />
     <Compile Include="Web\ResponseModels\UserResponseModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +219,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\RoomDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\RoomDrawingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -222,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MeasureHeightPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ShowAllRoomsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

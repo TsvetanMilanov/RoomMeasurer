@@ -1,6 +1,7 @@
 ﻿namespace RoomMeasurer.Client.ViewModels
 {
     using System.ComponentModel;
+
     using Contracts;
     using DB;
     using Utilities;

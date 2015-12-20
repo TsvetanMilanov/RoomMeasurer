@@ -5,11 +5,37 @@
     xmlns:local="using:RoomMeasurer.Client.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:commands="using:RoomMeasurer.Client.AttachedProperties"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource BackgroundColorBrush}">
-        <Canvas>
-            <Polygon Points="{Binding RoomCorners}"></Polygon>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+
+        <Canvas Background="Transparent"
+                Grid.Row="0">
+            <Polygon commands:TranslatePolygonCommand.Translate="{Binding Translate}"
+                     commands:DisableInertiaCommand.DisableInertia="{Binding DisableInertia}"
+                     commands:ScaleShapeCommand.Scale="{Binding Scale}"
+                     Canvas.Left="100"
+                     Canvas.Top="100"
+                     Fill="AliceBlue"
+                     Points="{Binding RoomCorners}" />
         </Canvas>
+        
+        <Button Content="Show wall sizes"
+                Name="showWallSizesButton"
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                Command="{Binding ShowWallSizes}" />
+
+        <Button Content="Main menu"
+                Name="backToMainPageButton"
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                Command="{Binding BackToMainMenu}" />
     </Grid>
 </Page>

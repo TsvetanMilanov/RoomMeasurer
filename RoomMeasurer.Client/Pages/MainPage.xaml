@@ -7,8 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    
-
     <Grid Background="{StaticResource BackgroundColorBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
@@ -23,6 +21,7 @@
         <Grid Grid.Row="2" VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
@@ -41,6 +40,11 @@
                     Style="{StaticResource ButtonStyle}"
                     Command="{Binding GoToSetCameraFocusCommand}"
                     Grid.Row="2"/>
+            <Button Name="loginButton"
+                    Content="Login"
+                    Style="{StaticResource ButtonStyle}"
+                    Command="{Binding GoToLoginPage}"
+                    Grid.Row="3"/>
         </Grid>
     </Grid>
 </Page>

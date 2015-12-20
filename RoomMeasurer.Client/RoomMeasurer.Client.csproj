@@ -99,15 +99,28 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AttachedProperties\CanvasCommands.cs" />
+    <Compile Include="AttachedProperties\ScaleShapeCommand.cs" />
+    <Compile Include="AttachedProperties\TranslatePolygonCommand.cs" />
+    <Compile Include="AttachedProperties\DisableInertiaCommand.cs" />
     <Compile Include="Contracts\INavigationService.cs" />
     <Compile Include="DB\Data.cs" />
     <Compile Include="Controls\CanvasWithSelectableBackground.xaml.cs">
       <DependentUpon>CanvasWithSelectableBackground.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DB\Models\UserDatabaseModel.cs" />
+    <Compile Include="Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Notifications\MessageDialogNotificator.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Web\RequestModels\RoomRequestModel.cs" />
     <Compile Include="Models\Edge.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Pages\CalculationResultPage.xaml.cs">
       <DependentUpon>CalculationResultPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FinishMeasurementPage.xaml.cs">
+      <DependentUpon>FinishMeasurementPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -133,10 +146,12 @@
     <Compile Include="Utilities\DelegateCommandWithParameter.cs" />
     <Compile Include="Utilities\NavigationService.cs" />
     <Compile Include="Utilities\PointsDistanceCalculator.cs" />
+    <Compile Include="Utilities\Requester.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CalculateBaseViewModel.cs" />
     <Compile Include="ViewModels\CalculationResultViewModel.cs" />
     <Compile Include="Controls\CanvasWithSelectableBackgroundViewModel.cs" />
+    <Compile Include="ViewModels\FinishMeasurementViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MeasureHeightViewModel.cs" />
     <Compile Include="ViewModels\MeasureWithoutReferenceViewModel.cs" />
@@ -144,6 +159,8 @@
     <Compile Include="ViewModels\RoomDrawingViewModel.cs" />
     <Compile Include="ViewModels\RoomGeometryViewModel.cs" />
     <Compile Include="ViewModels\SetCameraFocusViewModel.cs" />
+    <Compile Include="Web\RequestModels\UserRequestModel.cs" />
+    <Compile Include="Web\ResponseModels\UserResponseModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -173,6 +190,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CalculationResultPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FinishMeasurementPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

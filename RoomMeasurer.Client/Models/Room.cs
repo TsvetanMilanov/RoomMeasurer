@@ -16,5 +16,9 @@
         public double ProjectedReferenceHeight { get; set; }
 
         public double ActualReferenceHeight { get; set; }
+
+        public double Longitude { get; set; }
+
+        public double Latitude { get; set; }
     }
 }

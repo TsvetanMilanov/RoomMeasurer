@@ -2,10 +2,11 @@
 {
     using System.Collections.Generic;
     using Windows.UI.Xaml.Controls;
-    
+
     using Controls;
     using Pages;
     using Models;
+    using Utilities.Notifications;
 
     public class MeasureWithReferenceViewModel : CalculateBaseModel<CanvasWithSelectableBackground>
     {
@@ -20,7 +21,7 @@
 
             if (string.IsNullOrEmpty(this.ReferenceObjectHeight))
             {
-                // TODO: Pop notification for the required reference height.
+                MessageDialogNotificator.Notify("Please fill the reference's actual height field.");
                 return;
             }
 
@@ -30,7 +31,7 @@
 
             if (tappedPointsTopOffsets.Count < 3)
             {
-                // TODO: Pop notification to add more points to the canvas.
+                MessageDialogNotificator.Notify("Please add the three reference points.");
                 return;
             }
 
@@ -40,10 +41,6 @@
             double projectedEdgeHeight = distances[1];
             double actualReferenceHeight = double.Parse(this.ReferenceObjectHeight);
             
-            // TODO: Move in final calculations page.
-            // var focusDistance = await this.Data.GetFoucsDistance();
-            // var distance = Measurer.GetEdgeDistances(new double[] { 155 }, focusDistance, projectedReferenceHeight, actualReferenceHeight);
-
             Room room = new Room(projectedReferenceHeight, actualReferenceHeight);
             
             Edge edge = new Edge(projectedEdgeHeight, this.CalculatedAngle);

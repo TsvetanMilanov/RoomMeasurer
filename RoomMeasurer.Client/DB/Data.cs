@@ -7,13 +7,15 @@
     using SQLite.Net;
     using SQLite.Net.Platform.WinRT;
     using Windows.Storage;
-
+    using DB.Models;
+    using SQLite.Net.Async;
     public class Data
     {
         public const string SettingsFileName = "focus.txt";
         private readonly string dbFilePath;
         private SQLiteConnectionWithLock dbContext;
         private StorageFolder localFolder;
+        private SQLiteAsyncConnection connection;
 
         public Data()
         {
@@ -29,8 +31,35 @@
                              storeDateTimeAsTicks: false)
                          );
 
+            this.init();
+
             this.localFolder = ApplicationData.Current.LocalFolder;
 
+        }
+
+        private async void init()
+        {
+            this.connection = new SQLiteAsyncConnection(() => { return this.dbContext; });
+            await this.connection.CreateTableAsync<UserDatabaseModel>();
+        }
+
+        public async Task UpdateCurrentUserAsync(UserDatabaseModel user)
+        {
+            if (user == null)
+            {
+                return;
+            }
+
+            await this.connection.DeleteAllAsync<UserDatabaseModel>();
+
+            await this.connection.InsertAsync(user);
+        }
+
+        public async Task<UserDatabaseModel> GetCurrentUser()
+        {
+            var result = await this.connection.Table<UserDatabaseModel>().ToListAsync();
+
+            return result[0];
         }
 
         public async void SaveFocusDistance(double f)

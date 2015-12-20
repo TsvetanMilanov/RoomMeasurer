@@ -3,9 +3,11 @@
     using System.Collections.Generic;
     using Windows.UI.Xaml.Controls;
 
+    using Controls;
     using Models;
     using Pages;
-    using Controls;
+    using Utilities.Notifications;
+
     public class MeasureWithoutReferenceViewModel : CalculateBaseModel<CanvasWithSelectableBackground>
     {
         public Room Room { get; set; }
@@ -18,7 +20,7 @@
 
             if (tappedPointsTopOffsets.Count < 2)
             {
-                // TODO: Pop notification to add more points to the canvas.
+                MessageDialogNotificator.Notify("Please add the reference points by tapping on the image.");
                 return;
             }
 

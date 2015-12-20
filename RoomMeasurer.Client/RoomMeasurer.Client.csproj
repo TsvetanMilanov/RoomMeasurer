@@ -111,6 +111,7 @@
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Notifications\MessageDialogNotificator.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Web\RequestModels\RoomRequestModel.cs" />
     <Compile Include="Models\Edge.cs" />

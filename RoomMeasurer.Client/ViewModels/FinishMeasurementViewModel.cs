@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.InteropServices;
     using System.Threading.Tasks;
     using System.Windows.Input;
     using Windows.Devices.Geolocation;
@@ -12,14 +13,14 @@
 
     using Newtonsoft.Json;
 
-    using Web;
-    using Web.RequestModels;
+    using DB;
     using Logic;
     using Models;
     using Pages;
+    using Web.RequestModels;
     using Utilities;
-    using Windows.Web.Http.Headers;
-    using System.Runtime.InteropServices;
+    using Utilities.Notifications;
+
     public class FinishMeasurementViewModel : BaseViewModel
     {
         public FinishMeasurementViewModel()
@@ -71,20 +72,20 @@
             {
                 serverResult = await requester.PostJsonAsync("/api/roomGeometry", requestContent, token);
             }
-            catch (COMException exception)
+            catch (COMException)
             {
-                // TODO: Notify the user with error.
+                MessageDialogNotificator.Notify("There was an error on the server. Please contact the server administrators..");
             }
 
             RoomRequestModel result = JsonConvert.DeserializeObject<RoomRequestModel>(serverResult);
 
             if (result == null)
             {
-                // TODO: Notify bad request.
+                MessageDialogNotificator.Notify("The room information was not valid or you are not authenticated.");
             }
             else
             {
-                // TODO: Notify success.
+                MessageDialogNotificator.Notify("The room information was successfully saved in the database.");
             }
         }
 

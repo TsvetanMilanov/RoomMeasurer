@@ -50,7 +50,6 @@
             if (tappedPointsTopOffsets.Count != 2)
             {
                 this.Instruction = "You must tap two reference points in the image - object base and object top.";
-                // TODO: Pop notification to add more points to the canvas.
                 return;
             }
 
@@ -63,7 +62,6 @@
 
         private void CalculateFocus()
         {
-            // TODO: error notifications for invalid input
             if (this.RealSize == null)
             {
                 this.Instruction = "You must set the objects real size.";

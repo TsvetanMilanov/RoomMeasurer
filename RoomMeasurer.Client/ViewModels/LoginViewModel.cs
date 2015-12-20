@@ -6,11 +6,13 @@
 
     using Newtonsoft.Json;
 
-    using Utilities;
+    using DB;
+    using DB.Models;
     using Web.RequestModels;
     using Web.ResponseModels;
-    using Web;
-    using DB.Models;
+    using Utilities;
+    using Utilities.Notifications;
+    using System;
     public class LoginViewModel
     {
         public LoginViewModel()
@@ -38,13 +40,23 @@
 
             HttpStringContent requestContent = new HttpStringContent(requestBody, UnicodeEncoding.Utf8, "application/json");
 
-            string response = await requester.PutJsonAsync("/api/users/token", requestContent);
+            string response = string.Empty;
+
+            try
+            {
+                response = await requester.PutJsonAsync("/api/users/token", requestContent);
+            }
+            catch (Exception)
+            {
+                MessageDialogNotificator.Notify("There was an error on the server. Please contact the server administrators.");
+            }
 
             UserResponseModel user = JsonConvert.DeserializeObject<UserResponseModel>(response);
 
-            if (user == null)
+            if (string.IsNullOrEmpty(user.UserName) || 
+                string.IsNullOrEmpty(user.Token))
             {
-                // TODO: Notify.
+                MessageDialogNotificator.Notify("Invalid username or password.");
             }
             else
             {
@@ -64,7 +76,7 @@
 
                 UserDatabaseModel currentUser = await data.GetCurrentUser();
 
-                // TODO: Notify.
+                MessageDialogNotificator.Notify(string.Format("Hello {0} {1}!\nYou are now logged in.", currentUser.FirstName, currentUser.LastName));
             }
         }
     }

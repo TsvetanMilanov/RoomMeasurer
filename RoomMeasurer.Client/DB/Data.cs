@@ -1,4 +1,4 @@
-﻿namespace RoomMeasurer.Client.Web
+﻿namespace RoomMeasurer.Client.DB
 {
     using System;
     using System.IO;

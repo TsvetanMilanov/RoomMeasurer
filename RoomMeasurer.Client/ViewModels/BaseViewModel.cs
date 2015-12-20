@@ -1,8 +1,9 @@
 ﻿namespace RoomMeasurer.Client.ViewModels
 {
     using System.ComponentModel;
+
     using Contracts;
-    using Web;
+    using DB;
     using Utilities;
 
     public class BaseViewModel : INotifyPropertyChanged

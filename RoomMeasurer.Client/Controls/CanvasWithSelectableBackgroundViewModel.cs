@@ -20,6 +20,7 @@
 
     using Utilities;
     using ViewModels;
+    using Utilities.Notifications;
 
     public class CanvasWithSelectableBackgroundViewModel : BaseViewModel
     {
@@ -104,9 +105,9 @@
             {
                 file = await savePicker.PickSaveFileAsync();
             }
-            catch (UnauthorizedAccessException exception)
+            catch (UnauthorizedAccessException)
             {
-                // TODO: Show notification for unauthorized access.
+                MessageDialogNotificator.Notify("You are not authorized to save files in this directory. Try different one.");
                 return;
             }
 
@@ -127,7 +128,7 @@
                 }
                 else
                 {
-                    // TODO: Notification for error.
+                    MessageDialogNotificator.Notify("The photo cannot be saved. Please giv this application the required permissions..");
                 }
             }
 

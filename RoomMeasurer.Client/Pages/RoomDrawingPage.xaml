@@ -9,7 +9,13 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource BackgroundColorBrush}">
-        <Canvas Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+
+        <Canvas Background="Transparent"
+                Grid.Row="0">
             <Polygon commands:TranslatePolygonCommand.Translate="{Binding Translate}"
                      commands:DisableInertiaCommand.DisableInertia="{Binding DisableInertia}"
                      commands:ScaleShapeCommand.Scale="{Binding Scale}"
@@ -18,5 +24,11 @@
                      Fill="AliceBlue"
                      Points="{Binding RoomCorners}" />
         </Canvas>
+
+        <Button Content="Main menu"
+                Name="backToMainPageButton"
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                Command="{Binding BackToMainMenu}" />
     </Grid>
 </Page>

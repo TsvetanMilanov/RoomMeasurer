@@ -46,5 +46,24 @@
 
             return result;
         }
+
+        public async Task<string> PutJsonAsync(string url, IHttpContent content, string token = null)
+        {
+            HttpClient client = new HttpClient();
+
+            client.DefaultRequestHeaders
+                                .Accept
+                                .Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
+
+            if (token != null)
+            {
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+            }
+
+            HttpResponseMessage response = await client.PutAsync(new Uri(BaseUrl + url), content);
+            string result = await response.Content.ReadAsStringAsync();
+
+            return result;
+        }
     }
 }

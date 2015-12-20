@@ -3,13 +3,13 @@
     using System;
     using System.Windows.Input;
     using Windows.Foundation;
-    using Windows.UI.Xaml;
     using Windows.UI.Xaml.Input;
     using Windows.UI.Xaml.Media;
     using Windows.UI.Xaml.Shapes;
     using Windows.UI.Xaml.Controls;
 
     using Utilities;
+    using Pages;
 
     public class RoomDrawingViewModel : BaseViewModel
     {
@@ -21,6 +21,7 @@
             this.Translate = new DelegateCommandWithParameter<ManipulationDeltaRoutedEventArgs>(this.ExecuteTranslateCommand);
             this.DisableInertia = new DelegateCommandWithParameter<ManipulationInertiaStartingRoutedEventArgs>(this.ExecuteDisableInertiaCommand);
             this.Scale = new DelegateCommandWithParameter<ManipulationDeltaRoutedEventArgs>(this.ExecuteScaleCommand);
+            this.BackToMainMenu = new DelegateCommand(this.ExecuteBackToMainMenuCommand);
         }
 
         public ICommand Translate { get; set; }
@@ -28,6 +29,8 @@
         public ICommand DisableInertia { get; set; }
 
         public ICommand Scale { get; set; }
+
+        public ICommand BackToMainMenu { get; set; }
 
         public PointCollection RoomCorners
         {
@@ -51,6 +54,11 @@
 
                 this.RaisePropertyChanged("RoomCorners");
             }
+        }
+
+        private void ExecuteBackToMainMenuCommand()
+        {
+            this.NavigationService.Navigate(typeof(MainPage));
         }
 
         private void ExecuteScaleCommand(ManipulationDeltaRoutedEventArgs obj)
@@ -85,13 +93,13 @@
 
         internal void CalculateRoomCorners(RoomGeometryViewModel room)
         {
-            room = new RoomGeometryViewModel(new System.Collections.Generic.List<double>
-            {
-                50, 50, 50
-            }, new System.Collections.Generic.List<double>
-            {
-                0, 120, 240
-            });
+            //room = new RoomGeometryViewModel(new System.Collections.Generic.List<double>
+            //{
+            //    50, 50, 50
+            //}, new System.Collections.Generic.List<double>
+            //{
+            //    0, 120, 240
+            //});
 
             PointCollection roomCorners = new PointCollection();
             for (int i = 0; i < room.Yaws.Count; i++)

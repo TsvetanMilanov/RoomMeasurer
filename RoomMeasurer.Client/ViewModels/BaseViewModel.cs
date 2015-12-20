@@ -2,7 +2,7 @@
 {
     using System.ComponentModel;
     using Contracts;
-    using DB;
+    using Web;
     using Utilities;
 
     public class BaseViewModel : INotifyPropertyChanged

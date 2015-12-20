@@ -1,9 +1,9 @@
-﻿namespace RoomMeasurer.Client.DB.Models
+﻿namespace RoomMeasurer.Client.Web.RequestModels
 {
     using Client.Models;
     using ViewModels;
 
-    public class RoomDatabaseModel
+    public class RoomRequestModel
     {
         public Room Room { get; set; }
 

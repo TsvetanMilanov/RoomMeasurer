@@ -12,8 +12,8 @@
 
     using Newtonsoft.Json;
 
-    using DB;
-    using DB.Models;
+    using Web;
+    using Web.RequestModels;
     using Logic;
     using Models;
     using Pages;
@@ -51,7 +51,7 @@
             this.Room.Latitude = latitude;
             this.Room.Longitude = longitude;
 
-            RoomDatabaseModel roomDatabaseModel = new RoomDatabaseModel
+            RoomRequestModel roomDatabaseModel = new RoomRequestModel
             {
                 Geometry = await this.GenerateRoomGeometryViewModel(),
                 Room = this.Room
@@ -60,20 +60,23 @@
             string requestBody = JsonConvert.SerializeObject(roomDatabaseModel);
             HttpStringContent requestContent = new HttpStringContent(requestBody, UnicodeEncoding.Utf8, "application/json");
 
-            // TODO: Get token from database.
-            string token = "0jk2vreqJ7meGRfNf2rvfP0a0ts8xzEAxEnxGwgLGaG4FKCwMZdtDE5N7wCAlFbY3Pp55u3mIEcrEcFLWJbKxZMoGXJMkQC6EBBsVOGm5x9UJHwRAzQmO1VAqXXvNSumvKlo3f4zidH302p0RS9an6TUES5c44SWS86pLTsViiRbeh1GrfzcOq5kOZW9GMYvC5s45R0d";
+            Data data = new Data();
+
+            string token = (await data.GetCurrentUser()).Token;
 
             Requester requester = new Requester();
             string serverResult = string.Empty;
 
-            try {
-                 serverResult = await requester.PostJsonAsync("/api/roomGeometry", requestContent, token);
-            } catch(COMException exception)
+            try
+            {
+                serverResult = await requester.PostJsonAsync("/api/roomGeometry", requestContent, token);
+            }
+            catch (COMException exception)
             {
                 // TODO: Notify the user with error.
             }
 
-            RoomDatabaseModel result = JsonConvert.DeserializeObject<RoomDatabaseModel>(serverResult);
+            RoomRequestModel result = JsonConvert.DeserializeObject<RoomRequestModel>(serverResult);
 
             if (result == null)
             {
@@ -105,7 +108,10 @@
                 this.Room.ActualReferenceHeight);
 
             List<double> orientations = this.Room.Edges.Select(e => e.ZRotation).ToList();
-            RoomGeometryViewModel roomGeometry = new RoomGeometryViewModel(distances, orientations);
+
+            List<double> actualWallSizes = Measurer.GetActualWallSizes(distances, orientations);
+
+            RoomGeometryViewModel roomGeometry = new RoomGeometryViewModel(distances, orientations, actualWallSizes);
             return roomGeometry;
         }
     }

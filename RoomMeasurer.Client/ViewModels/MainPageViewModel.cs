@@ -9,9 +9,9 @@
     {
         public MainPageViewModel()
         {
-            this.GoToMeasureFromExistingImageCommand = new DelegateCommand(this.HandleGoToMeasureFromExistingImage);
-            this.GoToSetCameraFocusCommand = new DelegateCommand(this.HandleGoToSetCameraFocus);
-            this.GoToStartMeasuringRoomCommand = new DelegateCommand(this.HandleGoToStartMeasuringRoom);
+            this.GoToMeasureFromExistingImageCommand = new DelegateCommand(this.ExecuteGoToMeasureFromExistingImageCommand);
+            this.GoToSetCameraFocusCommand = new DelegateCommand(this.ExecuteGoToSetCameraFocusCommand);
+            this.GoToStartMeasuringRoomCommand = new DelegateCommand(this.ExecuteGoToStartMeasuringRoomCommand);
         }
 
         public ICommand GoToMeasureFromExistingImageCommand { get; set; }
@@ -20,17 +20,17 @@
 
         public ICommand GoToStartMeasuringRoomCommand { get; set; }
 
-        private void HandleGoToStartMeasuringRoom()
+        private void ExecuteGoToStartMeasuringRoomCommand()
         {
             this.NavigationService.Navigate(typeof(MeasureWithReferencePage));
         }
 
-        private void HandleGoToSetCameraFocus()
+        private void ExecuteGoToSetCameraFocusCommand()
         {
             this.NavigationService.Navigate(typeof(SetCameraFocusPage));
         }
 
-        private void HandleGoToMeasureFromExistingImage()
+        private void ExecuteGoToMeasureFromExistingImageCommand()
         {
             this.NavigationService.Navigate(typeof(MeasureHeightPage));
         }

@@ -18,16 +18,16 @@
 
         <Grid Grid.Row="1">
             <Canvas Name="canvasImageContainer"
-                commands:CanvasCommands.Tap="{Binding Tap}"
-                Height="350"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Center"/>
+                    commands:CanvasCommands.Tap="{Binding Tap}"
+                    Height="350"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center" />
         </Grid>
 
         <StackPanel Grid.Row="0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Bottom"
-                Background="{StaticResource MenuColor}">
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    Background="{StaticResource MenuColor}">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -38,12 +38,12 @@
                         Grid.Column="0"
                         CommandParameter="{Binding ElementName=canvasImageContainer}"
                         Command="{Binding BrowsePicturesCommand}"
-                        Style="{StaticResource ButtonStyle}"/>
+                        Style="{StaticResource ButtonStyle}" />
                 <Button Content="Camera"
                         Grid.Column="1"
                         CommandParameter="{Binding ElementName=canvasImageContainer}"
                         Command="{Binding TakePhotoWithCameraCommand}"
-                        Style="{StaticResource ButtonStyle}"/>
+                        Style="{StaticResource ButtonStyle}" />
             </Grid>
 
         </StackPanel>

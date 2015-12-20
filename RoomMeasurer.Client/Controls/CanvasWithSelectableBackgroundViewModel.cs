@@ -12,7 +12,6 @@
     using Windows.Storage.Provider;
     using Windows.Storage.Streams;
     using Windows.UI;
-    using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Input;
     using Windows.UI.Xaml.Media;
@@ -21,10 +20,12 @@
 
     using Utilities;
     using ViewModels;
-    using Windows.Devices.Sensors;
 
     public class CanvasWithSelectableBackgroundViewModel : BaseViewModel
     {
+        private static Color DefaultEllipseColor = Colors.Red;
+        private static Color TappedEllipseColor = Colors.Blue;
+
         private double calculatedAngle;
 
         public CanvasWithSelectableBackgroundViewModel()
@@ -73,7 +74,7 @@
                 return;
             }
 
-            Ellipse circle = this.CreateEllipse(15, 15, Colors.Red);
+            Ellipse circle = this.CreateEllipse(15, 15, DefaultEllipseColor);
 
             Point position = args.GetPosition(canvas);
 
@@ -161,8 +162,44 @@
             ellipse.Width = width;
             ellipse.Height = height;
             ellipse.Fill = new SolidColorBrush(color);
+            ellipse.ManipulationMode = ManipulationModes.All;
+            ellipse.ManipulationStarted += HandleEllipseManipulationStarted;
+            ellipse.ManipulationDelta += HandleEllipseManipulationDelta;
+            ellipse.ManipulationCompleted += HandleEllipseManipulationCompleted;
+            ellipse.ManipulationInertiaStarting += HandleEllipseInertionStarted;
 
             return ellipse;
+        }
+
+        private void HandleEllipseInertionStarted(object sender, ManipulationInertiaStartingRoutedEventArgs e)
+        {
+            e.TranslationBehavior.DesiredDeceleration = int.MaxValue;
+
+        }
+
+        private void HandleEllipseManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            Ellipse control = sender as Ellipse;
+
+            control.Fill = new SolidColorBrush(DefaultEllipseColor);
+        }
+
+        private void HandleEllipseManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            Ellipse control = sender as Ellipse;
+
+            double top = Canvas.GetTop(control);
+            double left = Canvas.GetLeft(control);
+
+            Canvas.SetTop(control, top + e.Delta.Translation.Y);
+            Canvas.SetLeft(control, left + e.Delta.Translation.X);
+        }
+
+        private void HandleEllipseManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+        {
+            Ellipse control = sender as Ellipse;
+
+            control.Fill = new SolidColorBrush(TappedEllipseColor);
         }
 
         private async Task<Image> CreateImageFromStorageFileAsync(IStorageFile file)

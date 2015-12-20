@@ -14,14 +14,14 @@
     {
         public FinishMeasurementViewModel()
         {
-            this.DrawRoom = new DelegateCommand(this.HandleDrawRoomCommand);
+            this.DrawRoom = new DelegateCommand(this.ExecuteDrawRoomCommand);
         }
 
         public Room Room { get; internal set; }
 
         public ICommand DrawRoom { get; set; }
 
-        private async void HandleDrawRoomCommand()
+        private async void ExecuteDrawRoomCommand()
         {
             Data data = new Data();
 
@@ -35,8 +35,8 @@
                 this.Room.ActualReferenceHeight);
 
             List<double> orientations = this.Room.Edges.Select(e => e.ZRotation).ToList();
-
-            this.NavigationService.Navigate(typeof(RoomDrawingPage), new RoomGeometryViewModel(distances, orientations));
+            RoomGeometryViewModel roomGeometry = new RoomGeometryViewModel(distances, orientations);
+            this.NavigationService.Navigate(typeof(RoomDrawingPage), roomGeometry);
         }
     }
 }

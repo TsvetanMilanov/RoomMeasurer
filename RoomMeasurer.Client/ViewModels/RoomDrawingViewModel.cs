@@ -39,6 +39,14 @@
 
         internal void CalculateRoomCorners(RoomGeometryViewModel room)
         {
+            //room = new RoomGeometryViewModel(new System.Collections.Generic.List<double>
+            //{
+            //    50, 50, 50
+            //}, new System.Collections.Generic.List<double>
+            //{
+            //    0, 120, 240
+            //});
+
             PointCollection roomCorners = new PointCollection();
             for (int i = 0; i < room.Yaws.Count; i++)
             {

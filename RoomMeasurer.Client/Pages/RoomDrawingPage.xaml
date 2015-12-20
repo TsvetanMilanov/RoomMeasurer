@@ -5,11 +5,14 @@
     xmlns:local="using:RoomMeasurer.Client.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:commands="using:RoomMeasurer.Client.AttachedProperties"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource BackgroundColorBrush}">
         <Canvas>
-            <Polygon Canvas.Left="100"
+            <Polygon commands:PolygonCommands.Translate="{Binding Translate}"
+                     commands:DisableInertiaCommand.DisableInertia="{Binding DisableInertia}"
+                     Canvas.Left="100"
                      Canvas.Top="100"
                      Fill="AliceBlue"
                      Points="{Binding RoomCorners}" />

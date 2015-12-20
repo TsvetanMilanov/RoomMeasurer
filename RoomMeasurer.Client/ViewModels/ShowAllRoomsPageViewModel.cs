@@ -70,6 +70,13 @@
             Data data = new Data();
 
             UserDatabaseModel currentUser = await Data.GetCurrentUser();
+
+            if (currentUser == null || string.IsNullOrEmpty(currentUser.Token))
+            {
+                MessageDialogNotifier.Notify("You must be logged in to get all rooms.");
+                return;
+            }
+
             string result = string.Empty;
 
             try

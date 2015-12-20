@@ -59,6 +59,11 @@
         {
             var result = await this.connection.Table<UserDatabaseModel>().ToListAsync();
 
+            if (result == null || result.Count <= 0)
+            {
+                return null;
+            }
+
             return result[0];
         }
 

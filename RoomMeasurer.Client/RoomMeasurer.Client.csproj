@@ -107,6 +107,7 @@
     <Compile Include="Controls\CanvasWithSelectableBackground.xaml.cs">
       <DependentUpon>CanvasWithSelectableBackground.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DB\Models\RoomDatabaseModel.cs" />
     <Compile Include="Models\Edge.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Pages\CalculationResultPage.xaml.cs">
@@ -139,6 +140,7 @@
     <Compile Include="Utilities\DelegateCommandWithParameter.cs" />
     <Compile Include="Utilities\NavigationService.cs" />
     <Compile Include="Utilities\PointsDistanceCalculator.cs" />
+    <Compile Include="Utilities\Requester.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CalculateBaseViewModel.cs" />
     <Compile Include="ViewModels\CalculationResultViewModel.cs" />

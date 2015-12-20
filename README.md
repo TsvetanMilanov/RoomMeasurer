@@ -8,7 +8,6 @@ RoomMeasurer is an app that lets you quickly scan the floor plan of a room by ta
 ## TODO
 
 ### Priority list
-- Implement room drawing on canvas
 - Implement instruction notifier for room measurer
 - Video on Youtube
 

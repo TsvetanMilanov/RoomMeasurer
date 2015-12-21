@@ -64,7 +64,7 @@
 
             if (currentUser == null || string.IsNullOrEmpty(currentUser.Token))
             {
-                MessageDialogNotifier.Notify("You must be logged in to get all rooms.");
+                MessageDialogNotifier.Notify("You must be logged in to send room information on the server.");
                 return;
             }
 

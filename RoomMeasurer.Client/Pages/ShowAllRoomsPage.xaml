@@ -8,9 +8,6 @@
     xmlns:commands="using:RoomMeasurer.Client.AttachedProperties"
     mc:Ignorable="d">
     <Page.Resources>
-        <ItemsPanelTemplate x:Key="allRoomsPanel">
-            <StackPanel HorizontalAlignment="Stretch" />
-        </ItemsPanelTemplate>
         <DataTemplate x:Key="allRoomsItemTemplate">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
@@ -43,18 +40,22 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Background="{ThemeResource BackgroundColorBrush}">
-            <StackPanel Background="{StaticResource MenuColor}">
-                <TextBlock Text="All rooms:"
-                           TextAlignment="Center"/>
+    <Grid Background="{ThemeResource BackgroundColorBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="All rooms:"
+                   TextAlignment="Center"
+                   FontSize="24"
+                   Grid.Row="0" />
 
-                <ListBox ItemsSource="{Binding AllRooms, Mode=TwoWay}"
-                         ItemTemplate="{StaticResource allRoomsItemTemplate}"
-                         ItemsPanel="{StaticResource allRoomsPanel}"
-                         Background="Gray"
-                         commands:ListBoxSelectedCommand.SelectedItem ="{Binding SelectedItem}" />
-            </StackPanel>
-        </Grid>
+        <ListBox ItemsSource="{Binding AllRooms, Mode=TwoWay}"
+                 ItemTemplate="{StaticResource allRoomsItemTemplate}"
+                 Background="Gray"
+                 ScrollViewer.VerticalScrollMode="Enabled"
+                 Grid.Row="1"
+                 commands:ListBoxSelectedCommand.SelectedItem ="{Binding SelectedItem}" />
     </Grid>
 </Page>

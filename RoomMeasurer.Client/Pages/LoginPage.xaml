@@ -13,11 +13,9 @@
                      Text="{Binding UserName, Mode=TwoWay}"
                      Style="{StaticResource TextBoxStyle}"/>
 
-        <TextBox Grid.Row="1"
+        <PasswordBox Grid.Row="1"
                      PlaceholderText="Password"
-                     Text="{Binding Password, Mode=TwoWay}"
-                     InputScope="Password"
-                     Style="{StaticResource TextBoxStyle}"/>
+                     Password="{Binding Password, Mode=TwoWay}" />
 
         <Button Name="loginButton"
                     Content="Login"

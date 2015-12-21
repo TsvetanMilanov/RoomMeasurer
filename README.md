@@ -1,21 +1,9 @@
 # RoomMeasurer
-WindowsUniversal teamwork project
+
+WindowsUniversal teamwork project for Windows Apps course at Telerik Academy 2015.
 
 [![SEE VIDEO](http://img.youtube.com/vi/8h02FN1fH6c/0.jpg)](http://www.youtube.com/watch?v=8h02FN1fH6c)
 
 ## Description
 
 RoomMeasurer is an app that lets you quickly scan the floor plan of a room by taking photos of each corner. You can also calculate the real size and distance of an object based on a relevant reference in a photo. The object and reference must be at equal distance from the camera and the calculated side must be parallel to the camera plane.
-
-## TODO
-
-### Priority list
-- Implement instruction notifier for room measurer
-- Video on Youtube
-
-### Extras list
-- Remote data saving (saved plans in the cloud)
-- Local db data saving (locally saved plans)
-- option for saving plan locally or in the cloud
-- Gestures (moving tapped dots)
-- Tap ellipse identification (measure smaller than reference objects)
